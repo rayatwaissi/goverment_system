@@ -2,14 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_gradient"
-    tools:context=".MainActivity">
-
+    android:background="@drawable/background_gradient">
     <ImageView
-        android:id="@+id/image"
+        android:id="@+id/logo"
         android:layout_width="343dp"
         android:layout_height="246dp"
         android:layout_marginStart="93dp"
@@ -19,12 +16,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wlcm"
+        app:layout_constraintTop_toBottomOf="@+id/tvNV"
         app:layout_constraintVertical_bias="0.166"
         app:srcCompat="@drawable/issue_tracker" />
 
     <TextView
-        android:id="@+id/wlcm"
+        android:id="@+id/tvNV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="90dp"
@@ -36,13 +33,13 @@
         android:textColor="#FFFFFF"
         android:textSize="60sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/signup"
+        app:layout_constraintBottom_toTopOf="@+id/signNV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/loginNV"
         android:layout_width="150dp"
         android:layout_height="48dp"
         android:layout_marginStart="42dp"
@@ -54,12 +51,12 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:cornerRadius="12dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/signup"
-        app:layout_constraintEnd_toStartOf="@+id/signup"
+        app:layout_constraintBaseline_toBaselineOf="@+id/signNV"
+        app:layout_constraintEnd_toStartOf="@+id/signNV"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/signup"
+        android:id="@+id/signNV"
         android:layout_width="150dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
@@ -74,7 +71,9 @@
         app:cornerRadius="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/login"
-        app:layout_constraintTop_toBottomOf="@+id/wlcm" />
+        app:layout_constraintStart_toEndOf="@+id/loginNV"
+        app:layout_constraintTop_toBottomOf="@+id/tvNV" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
