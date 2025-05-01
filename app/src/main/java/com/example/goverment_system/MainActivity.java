@@ -92,11 +92,19 @@ public class MainActivity extends AppCompatActivity {
        TextView tvlogin= findViewById(R.id.tvlogin);
      //   tvlogin.setOnClickListener(v ->showLoginLayout());
         tvlogin.setOnClickListener(v->showMainPage());
+
+        Button redHome =findViewById(R.id.signup_btn);
+        redHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(R.layout.home);
+            }
+        });
     }
 
     private void showLoginLayout() {
         setContentView(R.layout.login);
-// click on " Dont have an account ? sign up " leads to move signup  page
+     // click on " Dont have an account ? sign up " leads to move signup  page
         TextView tvsignup = findViewById(R.id.tvSignUp);
      //   tvsignup.setOnClickListener(v -> showSignupLayout());
         tvsignup.setOnClickListener(v->showMainPage());
