@@ -20,7 +20,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/logemail"
+        android:id="@+id/email_login"
         android:layout_width="317dp"
         android:layout_height="56dp"
         android:layout_marginLeft="50dp"
@@ -34,7 +34,7 @@
 
 
     <EditText
-        android:id="@+id/loginpass"
+        android:id="@+id/password_login"
         android:layout_width="317dp"
         android:layout_height="56dp"
         android:layout_marginLeft="50dp"

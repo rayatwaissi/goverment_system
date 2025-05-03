@@ -42,7 +42,6 @@
         android:background="@drawable/editbox_background"
         android:ems="10"
         android:hint="Email"
-        android:inputType="textEmailAddress"
         android:paddingStart="16dp"
         android:textSize="20sp" />
 

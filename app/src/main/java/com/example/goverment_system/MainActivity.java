@@ -1,20 +1,32 @@
 package com.example.goverment_system;
 
+
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity {
+    private FirebaseAuth mAuth;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mAuth = FirebaseAuth.getInstance();
+
 
         setContentView(R.layout.logoshowpage);
 
@@ -86,28 +98,94 @@ public class MainActivity extends AppCompatActivity {
         tvlogin.setOnClickListener(v->showLoginLayout());
         tvsignup.setOnClickListener(v->showSignupLayout());
     }
+
+
     private void showSignupLayout() {
         setContentView(R.layout.signup);
-// click on "Have an account ? login " leads to move login page
-       TextView tvlogin= findViewById(R.id.tvlogin);
-     //   tvlogin.setOnClickListener(v ->showLoginLayout());
-        tvlogin.setOnClickListener(v->showMainPage());
+
+        TextView tvlogin = findViewById(R.id.tvlogin);
+        tvlogin.setOnClickListener(v -> showMainPage());
+
+        EditText nameET = findViewById(R.id.name);
+        EditText emailET = findViewById(R.id.email);
+        EditText passwordET = findViewById(R.id.password);
+        EditText confirmPasswordET = findViewById(R.id.ConfirmPass);
+        EditText phoneET = findViewById(R.id.phone);
+        Button registerBtn = findViewById(R.id.signup_btn);
+
+        registerBtn.setOnClickListener(v -> {
+            String name = nameET.getText().toString().trim();
+            String email = emailET.getText().toString().trim();
+            String password = passwordET.getText().toString().trim();
+            String confirmPassword = confirmPasswordET.getText().toString().trim();
+            String phone = phoneET.getText().toString().trim();
+
+            if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || phone.isEmpty()) {
+                Toast.makeText(MainActivity.this, "please ,fill all the fields", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (!password.equals(confirmPassword)) {
+                Toast.makeText(MainActivity.this, "The passwords do not match", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            mAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            String userId = mAuth.getCurrentUser().getUid();
+
+                            // أنشئ مرجع لقاعدة البيانات
+                            DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Users");
+
+                            // خزّن البيانات كمجموعة بيانات بسيطة
+                            User user = new User(name, email, phone);
+                            dbRef.child(userId).setValue(user)
+                                    .addOnSuccessListener(aVoid -> {
+                                        Toast.makeText(MainActivity.this, "Registration successful and data saved", Toast.LENGTH_SHORT).show();
+                                        setContentView(R.layout.home);
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        Toast.makeText(MainActivity.this, "Data storage failed " + e.getMessage(), Toast.LENGTH_LONG).show();
+                                    });
+
+                        } else {
+                            Toast.makeText(MainActivity.this, "Registration failed " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+        });
     }
 
     private void showLoginLayout() {
         setContentView(R.layout.login);
-// click on " Dont have an account ? sign up " leads to move signup  page
+
         TextView tvsignup = findViewById(R.id.tvSignUp);
-     //   tvsignup.setOnClickListener(v -> showSignupLayout());
-        tvsignup.setOnClickListener(v->showMainPage());
+        tvsignup.setOnClickListener(v -> showMainPage());
 
-        Button redHome =findViewById(R.id.login_btn);
-        redHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setContentView(R.layout.home);
+        EditText emailET = findViewById(R.id.email_login);
+        EditText passwordET = findViewById(R.id.password_login);
+        Button loginBtn = findViewById(R.id.login_btn);
+
+        loginBtn.setOnClickListener(v -> {
+            String email = emailET.getText().toString().trim();
+            String password = passwordET.getText().toString().trim();
+
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(MainActivity.this, "please enter the password and email field", Toast.LENGTH_SHORT).show();
+                return;
             }
-        });
 
+            // التحقق من بيانات تسجيل الدخول باستخدام Firebase
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(MainActivity.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
+                            setContentView(R.layout.home); // انتقال إلى الصفحة الرئيسية
+                        } else {
+                            Toast.makeText(MainActivity.this, "Failed ,inccorect password or email" , Toast.LENGTH_LONG).show();
+                        }
+                    });
+        });
     }
+
 }

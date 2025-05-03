@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "417399661841",
+    "project_id": "goverment-systemnew",
+    "storage_bucket": "goverment-systemnew.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:417399661841:android:3a27ddfd929289000f18b0",
+        "android_client_info": {
+          "package_name": "com.example.goverment_system"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgRHc02Bjn3TV5nE505rUmrOS253MC8bc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
