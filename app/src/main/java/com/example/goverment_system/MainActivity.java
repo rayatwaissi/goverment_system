@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -63,8 +64,10 @@ public class MainActivity extends AppCompatActivity {
 
             Button signup= findViewById(R.id.signup);
             Button login= findViewById(R.id.login);
-            signup.setOnClickListener(v -> showSignupLayout());
-            login.setOnClickListener(v ->showLoginLayout());
+
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_main, new MainFragment())
+                    .commit();
 
         }, 2500);
 
@@ -90,102 +93,5 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-//methods to move between sign up  and login page
-    private void showMainPage () {
-        setContentView(R.layout.activity_main);
-        TextView tvlogin= findViewById(R.id.login);
-        TextView tvsignup = findViewById(R.id.signup);
-        tvlogin.setOnClickListener(v->showLoginLayout());
-        tvsignup.setOnClickListener(v->showSignupLayout());
-    }
-
-
-    private void showSignupLayout() {
-        setContentView(R.layout.signup);
-
-        TextView tvlogin = findViewById(R.id.tvlogin);
-        tvlogin.setOnClickListener(v -> showMainPage());
-
-        EditText nameET = findViewById(R.id.name);
-        EditText emailET = findViewById(R.id.email);
-        EditText passwordET = findViewById(R.id.password);
-        EditText confirmPasswordET = findViewById(R.id.ConfirmPass);
-        EditText phoneET = findViewById(R.id.phone);
-        Button registerBtn = findViewById(R.id.signup_btn);
-
-        registerBtn.setOnClickListener(v -> {
-            String name = nameET.getText().toString().trim();
-            String email = emailET.getText().toString().trim();
-            String password = passwordET.getText().toString().trim();
-            String confirmPassword = confirmPasswordET.getText().toString().trim();
-            String phone = phoneET.getText().toString().trim();
-
-            if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || phone.isEmpty()) {
-                Toast.makeText(MainActivity.this, "please ,fill all the fields", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            if (!password.equals(confirmPassword)) {
-                Toast.makeText(MainActivity.this, "The passwords do not match", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            mAuth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            String userId = mAuth.getCurrentUser().getUid();
-
-                            // أنشئ مرجع لقاعدة البيانات
-                            DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Users");
-
-                            // خزّن البيانات كمجموعة بيانات بسيطة
-                            User user = new User(name, email, phone);
-                            dbRef.child(userId).setValue(user)
-                                    .addOnSuccessListener(aVoid -> {
-                                        Toast.makeText(MainActivity.this, "Registration successful and data saved", Toast.LENGTH_SHORT).show();
-                                        setContentView(R.layout.home);
-                                    })
-                                    .addOnFailureListener(e -> {
-                                        Toast.makeText(MainActivity.this, "Data storage failed " + e.getMessage(), Toast.LENGTH_LONG).show();
-                                    });
-
-                        } else {
-                            Toast.makeText(MainActivity.this, "Registration failed " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                        }
-                    });
-        });
-    }
-
-    private void showLoginLayout() {
-        setContentView(R.layout.login);
-
-        TextView tvsignup = findViewById(R.id.tvSignUp);
-        tvsignup.setOnClickListener(v -> showMainPage());
-
-        EditText emailET = findViewById(R.id.email_login);
-        EditText passwordET = findViewById(R.id.password_login);
-        Button loginBtn = findViewById(R.id.login_btn);
-
-        loginBtn.setOnClickListener(v -> {
-            String email = emailET.getText().toString().trim();
-            String password = passwordET.getText().toString().trim();
-
-            if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(MainActivity.this, "please enter the password and email field", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            // التحقق من بيانات تسجيل الدخول باستخدام Firebase
-            mAuth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(MainActivity.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
-                            setContentView(R.layout.home); // انتقال إلى الصفحة الرئيسية
-                        } else {
-                            Toast.makeText(MainActivity.this, "Failed ,inccorect password or email" , Toast.LENGTH_LONG).show();
-                        }
-                    });
-        });
-    }
 
 }
