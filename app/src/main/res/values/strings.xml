@@ -1,3 +1,122 @@
 <resources>
     <string name="app_name">goverment_system</string>
+    <string-array name="governorates_array">
+        <item>Select Governorate </item>
+        <item>Amman</item>
+        <item>Zarqa</item>
+        <item>Irbid</item>
+        <item>Aqaba</item>
+        <item>Balqa</item>
+        <item>Madaba</item>
+        <item>Mafraq</item>
+        <item>Jerash</item>
+        <item>Ajloun</item>
+        <item>Karak</item>
+        <item>Tafilah</item>
+        <item>Maan</item>
+    </string-array>
+    
+    <string-array name="competent_authority" >
+        <item>select competent authority</item>
+        <item>Ministry of Education</item>
+        <item>Ministry of Transportation</item>
+        <item>Ministry of Health</item>
+        <item>Ministry of Tourism</item>
+        <item>Ministry of Water and Irrigation</item>
+        <item>Ministry of Environment</item>
+        <item>Ministry of Labor</item>
+        <item>Ministry of Communications and Information Technology</item>
+
+
+    </string-array>
+
+    <string-array name="IssueEducation">
+        <item>Select issue type</item>
+        <item>School infrastructure problems</item>
+        <item>Complaints related to teaching staff</item>
+        <item>Academic and educational problems</item>
+        <item>Management-related complaints</item>
+        <item>Safety complaints</item>
+        <item>Parents complaints</item>
+        <item>Other</item>
+
+    </string-array>
+
+    <string-array name="IssueTransportation">
+        <item>Select issue type</item>
+        <item>poor road conditions</item>
+        <item>Public transportation delays or cancellations</item>
+        <item>Unsafe public transportation</item>
+        <item>Reckless or unlicensed drivers on public transportation</item>
+        <item>inoperative traffic signals or signs</item>
+        <item>Complaints about taxis or transportation services</item>
+        <item>Lack of public transportation in some areas</item>item>
+        <item>Lack of safe bicycle lanes</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="IssueHealth">
+        <item>Select issue type</item>
+        <item>Medical services problems</item>
+        <item>Lack of resources</item>
+        <item>Infrastructure and sanitation problems</item>
+        <item>organizational problems</item>
+        <item>Emergency and Ambulance Problems</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="IssueTourist">
+        <item>Select issue type</item>
+        <item>Poor tourist services</item>
+        <item>Exploitation of tourists</item>
+        <item>Neglect and maintenance of tourist sites</item>
+        <item>Poor hygiene and public facilities</item>
+        <item>Tourism license violations</item>
+        <item>Lack of tourist guidance and counseling</item>
+        <item>Tourist transportation problems</item>
+        <item>Other</item>
+    </string-array>
+    
+    <string-array name="IssueWater">
+        <item>Select issue type</item>
+        <item>Water outage</item>
+        <item>Water meter fault</item>
+        <item>drinking water pollution</item>
+        <item>Maintenance delay</item>
+        <item>high water bill</item>
+        <item>Water network leak</item>
+        <item>broken water pipe</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="IssueEnvironment">
+        <item>Select issue type</item>
+        <item>waste burning</item>
+        <item>environmental pollution</item>
+        <item>Cutting down trees and encroaching on forests</item>
+        <item>Factory and facility violations</item>
+        <item>construction and demolition waste</item>
+        <item>Attack on nature reserves</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="IssueLabor">
+        <item>Select issue type</item>
+        <item>Work without a contract</item>
+        <item>Delayed or unpaid salaries</item>
+        <item>discrimination in the workplace</item>
+        <item>working in unsafe or unhealthy conditions</item>
+        <item>Failure to register workers with social security</item>
+        <item>arbitrary dismissal</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="IssueCommunication">
+        <item>Select issue type</item>
+        <item>Internet outage or weakness</item>
+        <item>Weak or non-existent network</item>
+        <item>Problems with e-government services</item>
+        <item>Electronic fraud or digital fraud attempts</item>
+        <item>cybersecurity issues</item>
+        <item>Other</item>
+    </string-array>
 </resources>
