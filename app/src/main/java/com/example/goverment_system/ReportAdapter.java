@@ -38,7 +38,7 @@ public class ReportAdapter extends ArrayAdapter<Report> {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_report, parent, false);
         }
 
-        TextView txtTitle=convertView.findViewById(R.id.Title_txt);
+        TextView txtTitle=convertView.findViewById(R.id.txtTitle);
         TextView txtMinistry=convertView.findViewById(R.id.txtMinistry);
         TextView txtDate=convertView.findViewById(R.id.txtdate);
 

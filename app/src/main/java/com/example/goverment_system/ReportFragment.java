@@ -23,14 +23,55 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import java.util.Calendar;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class ReportFragment extends Fragment {
     final int CAMERA_REQUEST = 100, PERMISSION_CODE = 101;
     ImageButton imageButton;
 
+    private MapView mapView;
+    private GoogleMap googleMap;
+    private LatLng selectedLocation;
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.report_issue, container, false);
 
+        mapView = view.findViewById(R.id.mapView);
+        mapView.onCreate(savedInstanceState);
+        mapView.onResume(); // مهم لتشتغل الخريطة
+
+        MapsInitializer.initialize(requireContext());
+
+        mapView.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap gMap) {
+                googleMap = gMap;
+
+                // حرك الكاميرا لموقع مبدأي (مثلاً عمان)
+                LatLng jordan = new LatLng(31.9539, 35.9106);
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(jordan, 12));
+
+                // عند الضغط على الخريطة
+                googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                    @Override
+                    public void onMapClick(LatLng latLng) {
+                        googleMap.clear(); // احذف الماركر القديم
+                        googleMap.addMarker(new MarkerOptions().position(latLng).title("موقع البلاغ"));
+                        selectedLocation = latLng; // خزّن الإحداثيات
+                    }
+                });
+            }
+        });
 
 
 
@@ -251,6 +292,60 @@ simple_spinner_item`          | عرض العنصر المُختار حاليً�
                     return;
                 }
 
+// داخل onClick زر الإرسال بعد التحقق من صحة البيانات:
+
+// 1. جلب البيانات من الفورم:
+                String governorateStr = spinnerGovernorates.getSelectedItem().toString();
+                String authorityStr = spinner_authority.getSelectedItem().toString();
+                String issueTypeStr = issue_type.getSelectedItem().toString();
+                String dateStr = date;
+                String titleStr = titleSt;
+                String descriptionStr = discription;
+
+                double lat = 0.0, lng = 0.0;
+                if (selectedLocation != null) {
+                    lat = selectedLocation.latitude;
+                    lng = selectedLocation.longitude;
+                } else {
+                    Toast.makeText(getContext(), "Please select a location on the map", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+// 2. إذا عندك صورة، لازم ترفعيها أولاً على Firebase Storage لتحصلي على رابط، لكن لو بدون صورة، يمكن تترك imageUrl فارغ أو null
+                String imageUrl = null; // هنا خليها null أو رابط الصورة بعد رفعها (سنشرح لاحقاًد
+// 3. إنشاء كائن البلاغ:
+
+                FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                String userEmail = currentUser != null ? currentUser.getEmail() : "unknown_user";
+
+
+                ReportFirebase report = new ReportFirebase(
+                        governorateStr,
+                        authorityStr,
+                        issueTypeStr,
+                        dateStr,
+                        titleStr,
+                        descriptionStr,
+                        lat,
+                        lng,
+                        imageUrl,
+                        userEmail
+
+                );
+
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("reports");
+                String reportId = databaseReference.push().getKey();
+
+                if (reportId != null) {
+                    databaseReference.child(reportId).setValue(report).addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(getContext(), "Report submitted successfully!", Toast.LENGTH_LONG).show();
+                            // هنا ممكن تمسح الحقول أو تنقل المستخدم لشاشة أخرى
+                        } else {
+                            Toast.makeText(getContext(), "Failed to submit report: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
 
 
             }
@@ -283,6 +378,7 @@ simple_spinner_item`          | عرض العنصر المُختار حاليً�
     //اذا التقط صورة بالكاميرا  يستقبل الصورة ويعرضها → onActivityResult.
 
 
+
     public void onActivityResult(int reqCode, int resCode, Intent data) {
         super.onActivityResult(reqCode, resCode, data);
 
@@ -290,6 +386,30 @@ simple_spinner_item`          | عرض العنصر المُختار حاليً�
             Bitmap image = (Bitmap) data.getExtras().get("data");
             imageButton.setImageBitmap(image);
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mapView != null) mapView.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (mapView != null) mapView.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mapView != null) mapView.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        if (mapView != null) mapView.onLowMemory();
     }
 
 

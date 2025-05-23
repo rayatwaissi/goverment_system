@@ -89,7 +89,7 @@
         android:layout_marginBottom="224dp"
         android:backgroundTint="#FFFFFF"
         android:fontFamily="sans-serif-medium"
-        android:text="VIEW REPORTS STETUS"
+        android:text="VIEW REPORTS STATUS"
         android:textAlignment="center"
         android:textColor="#02394F"
         android:textSize="20sp"

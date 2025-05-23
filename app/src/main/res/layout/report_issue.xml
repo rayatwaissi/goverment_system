@@ -121,12 +121,24 @@
                     android:inputType="textMultiLine"
                     android:gravity="start|top" />
 
-                <com.google.android.gms.maps.MapView
-                    android:id="@+id/mapView3"
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Determine the location:"
+                    android:textColor="#051422"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+
+                <com.google.android.gms.maps.MapView
+                    android:id="@+id/mapView"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
                     android:layout_marginTop="16dp"
-                    android:contentDescription="location" />
+                    android:contentDescription="location"
+                    />
+
 
                 <ImageButton
                     android:id="@+id/camera"

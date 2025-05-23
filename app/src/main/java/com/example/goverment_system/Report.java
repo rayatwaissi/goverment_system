@@ -1,27 +1,43 @@
 package com.example.goverment_system;
 
 public class Report {
-    private  String title ,ministry , date ,status;
+    private String title;
+    private String ministry;
+    private String date;
+    private String status;
+    private String userEmail;
 
-    public  Report(){};
+    public Report() {}
 
-    public Report(String title,String ministry,String date, String status){
-        this.title=title;
-        this.ministry=ministry;
-        this.date=date;
-        this.status=status;    }
+    public Report(String title, String ministry, String date, String status, String userEmail) {
+        this.title = title;
+        this.ministry = ministry;
+        this.date = date;
+        this.status = status;
+        this.userEmail = userEmail;
+    }
 
     public String getTitle() {
         return title;
     }
-    public String getMinistry(){
+
+    public String getMinistry() {
         return ministry;
     }
 
-    public String getDate(){
+    public String getDate() {
         return date;
     }
-    public String getStatus(){
+
+    public String getStatus() {
         return status;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 }

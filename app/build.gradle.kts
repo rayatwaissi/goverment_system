@@ -33,7 +33,7 @@ android {
 }
 
 dependencies {
-
+    implementation ("com.google.android.gms:play-services-maps:18.1.0")
     implementation(libs.appcompat)
 
     implementation(libs.material)
@@ -47,6 +47,8 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.13.0"))
     implementation("com.google.firebase:firebase-auth:21.1.0")
     implementation ("com.google.firebase:firebase-database:20.3.0")
+
+
 
 
 
