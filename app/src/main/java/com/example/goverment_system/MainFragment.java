@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -13,8 +14,12 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_main, container, false);
 
+
         Button login = view.findViewById(R.id.login);
         Button signup = view.findViewById(R.id.signup);
+
+
+
 
         login.setOnClickListener(v ->
                 requireActivity().getSupportFragmentManager().beginTransaction()
