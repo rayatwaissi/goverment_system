@@ -79,7 +79,7 @@ public class ReportFragment extends Fragment {
 
         ImageButton arrow_back=view.findViewById(R.id.backArrow);
 
-                arrow_back.setOnClickListener(new View.OnClickListener() {
+        arrow_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 requireActivity().getSupportFragmentManager().beginTransaction().
@@ -104,18 +104,18 @@ simple_spinner_item`          | عرض العنصر المُختار حاليً�
         ArrayAdapter<CharSequence> adapter= ArrayAdapter.createFromResource(requireContext(),
                 R.array.governorates_array,
                 android.R.layout.simple_spinner_item);
-      //يحدد الشكل (Layout) الذي يستخدمه عندما تُفتح القائمة المنسدلة وتعرض العناصر
+        //يحدد الشكل (Layout) الذي يستخدمه عندما تُفتح القائمة المنسدلة وتعرض العناصر
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-       // يربط Adapter بالـ Spinner ليتم عرض القائمة بداخله
+        // يربط Adapter بالـ Spinner ليتم عرض القائمة بداخله
         spinnerGovernorates.setAdapter(adapter);
-       // Spinner ComptentAuthority =view.findViewById(R.id.spAuthority);
+        // Spinner ComptentAuthority =view.findViewById(R.id.spAuthority);
 
 
         Spinner spinner_authority=view.findViewById(R.id.spAuthority);
         Spinner issue_type=view.findViewById(R.id.sptype);
         ArrayAdapter<CharSequence> adapter1=ArrayAdapter.createFromResource(requireContext()
-        ,R.array.competent_authority
-        , android.R.layout.simple_spinner_item);
+                ,R.array.competent_authority
+                , android.R.layout.simple_spinner_item);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_authority.setAdapter(adapter1);
 
@@ -210,16 +210,16 @@ simple_spinner_item`          | عرض العنصر المُختار حاليً�
 
 
 //--------------------------------------------------------------------------------------
-        EditText title=view.findViewById(R.id.Title_txt);
-        title.setText(R.string.report_issue);
+        TextView titleRep=view.findViewById(R.id.Report);
+       titleRep.setText(R.string.report_issue_title);
 
 
 
         TextView Title_label = view.findViewById(R.id.Topic);
         Title_label.setText(R.string.write_title_label);
 
-        EditText titlehint=view.findViewById(R.id.Title_txt);
-        titlehint.setHint(R.string.title_hint);
+        EditText title=view.findViewById(R.id.Title_txt);
+        title.setHint(R.string.title_hint);
 
 
         TextView descLabel = view.findViewById(R.id.descLabel);
@@ -244,7 +244,7 @@ simple_spinner_item`          | عرض العنصر المُختار حاليً�
                 int selectedauthority = spinner_authority.getSelectedItemPosition();
                 int selected_issue_type = issue_type.getSelectedItemPosition();
 
-               // EditText EditDATE=view.findViewById(R.id.editTextDate);
+                // EditText EditDATE=view.findViewById(R.id.editTextDate);
                 String date=editTextDate.getText().toString().trim();
 
 
@@ -346,21 +346,21 @@ simple_spinner_item`          | عرض العنصر المُختار حاليً�
 
 
         return view;
-        }
+    }
 
 
-        /*
-        openCamera() تُستخدم لفتح تطبيق الكاميرا.
-        Intent يخبر النظام بأننا نريد التقاط صورة بالكاميرا.
-        startActivityForResult() يعني: "افتح الكاميرا وارجع لي النتيجة لاحقًا".
-         CAMERA_REQUEST هو رقم تعريف للطلب (مثل 101).*/
+    /*
+    openCamera() تُستخدم لفتح تطبيق الكاميرا.
+    Intent يخبر النظام بأننا نريد التقاط صورة بالكاميرا.
+    startActivityForResult() يعني: "افتح الكاميرا وارجع لي النتيجة لاحقًا".
+     CAMERA_REQUEST هو رقم تعريف للطلب (مثل 101).*/
     private void openCamera() {
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(cameraIntent,CAMERA_REQUEST);
     }
 
-  @Override
-  //إذا وافق يفتح الكاميرا→ onRequestPermissionsResult .
+    @Override
+    //إذا وافق يفتح الكاميرا→ onRequestPermissionsResult .
     public void onRequestPermissionsResult(int code, String[] perms, int[] results) {
         if (code == PERMISSION_CODE && results.length > 0 && results[0] == PackageManager.PERMISSION_GRANTED) {
             openCamera();
