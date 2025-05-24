@@ -185,6 +185,10 @@
     <!-- ...status page ... -->
     <string name="status_title">Status</string>
     <string name="new_status">New</string>
+    <string name="status_pending">Pending</string> <!-- بالعربي -->
+    <string name="status_in_review">In Review </string>
+    <string name="status_resolved">Resolved</string>
+    <string name="status_rejected">Rejected</string>
 
 
 

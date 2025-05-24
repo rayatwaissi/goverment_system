@@ -181,4 +181,9 @@
 
     <string name="status_title">الحالة</string>
     <string name="new_status">جديد</string>
+    <string name="status_pending">قيد الانتظار</string> <!-- بالعربي -->
+    <string name="status_in_review">قيد المراجعة</string>
+    <string name="status_resolved">تم الحل</string>
+    <string name="status_rejected">مرفوض</string>
+
 </resources>

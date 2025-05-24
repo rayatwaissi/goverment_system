@@ -37,7 +37,7 @@ public class ReportFirebase {
     public ReportFirebase(String governorate, String authority, String issueType, String date,
                           String title, String description, double latitude, double longitude,
                           String imageUrl, String userEmail) {
-        this(governorate, authority, issueType, date, title, description, latitude, longitude, imageUrl, userEmail, "New");
+        this(governorate, authority, issueType, date, title, description, latitude, longitude, imageUrl, userEmail, "Pending");
     }
 
 }
