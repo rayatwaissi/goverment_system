@@ -18,14 +18,14 @@
     
     <string-array name="competent_authority" >
         <item>select competent authority</item>
-        <item>Ministry of Education</item>
-        <item>Ministry of Transportation</item>
-        <item>Ministry of Health</item>
-        <item>Ministry of Tourism</item>
-        <item>Ministry of Water and Irrigation</item>
-        <item>Ministry of Environment</item>
-        <item>Ministry of Labor</item>
-        <item>Ministry of Communications and Information Technology</item>
+        <item name="Educatin">Ministry of Education</item>
+        <item  name="Transportation">Ministry of Transportation</item>
+        <item  name="Health">Ministry of Health</item>
+        <item  name="Tourism">Ministry of Tourism</item>
+        <item  name="Water">Ministry of Water and Irrigation</item>
+        <item  name="Environment">Ministry of Environment</item>
+        <item  name="Labor" >Ministry of Labor</item>
+        <item  name="Communication_IT">Ministry of Communications and Information Technology</item>
 
 
     </string-array>
@@ -120,6 +120,71 @@
         <item>Other</item>
     </string-array>
 
+    <!-- ... Activity_main page ... -->
+    <string name="welcome">Welcome</string>
+    <string name="login">LOGIN</string>
+    <string name="sign_up">SIGN UP</string>
+
+    <!-- ... login page ... -->
+    <string name="login_title">Login</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="login_button">LOGIN</string>
+    <string name="signup_prompt">Don’t have an account? Sign Up</string>
+
+    <string name="enter_email_password">Please enter the email and password fields</string>
+    <string name="login_success">Logged in successfully</string>
+    <string name="login_failed">Failed, incorrect password or email</string>
+
+    <!-- ... signup page ... -->
+    <string name="signup_title">Sign Up</string>
+    <string name="full_name_hint">Full Name</string>
+
+    <string name="phone_hint">Phone number</string>
+
+    <string name="confirm_password_hint">Confirm Password</string>
+    <string name="signup_button">SIGN UP</string>
+    <string name="login_prompt">Have an account? LOGIN</string>
+
+    <string name="fill_all_fields">Please fill all the fields</string>
+    <string name="email_check">incorrect email</string>
+    <string name="invalid_phone">Phone number is invalid</string>
+    <string name="passwords_not_match">The passwords do not match</string>
+    <string name="registration_success">Registration successful and data saved</string>
+    <string name="data_failed">Data storage failed: %1$s</string>
+    <string name="registration_failed">Registration failed: %1$s</string>
+
+    <!-- ...home page ... -->
+    <string name="home">Home</string>
+    <string name="report_issue">REPORT ISSUE</string>
+    <string name="view_reports_status">VIEW REPORTS STATUS</string>
+    <!-- ...Report_issue page ... -->
+        <string name="back_desc">arrow_back</string>
+        <string name="report_issue_title">Report issue</string>
+        <string name="select_date_hint">Select Date</string>
+        <string name="write_title_label">Write a title for the topic</string>
+        <string name="title_hint">Enter issue title .....</string>
+        <string name="desc_label">Describe the issue</string>
+        <string name="desc_hint">Write here .....</string>
+        <string name="location_label">Determine the location:</string>
+        <string name="map_desc">location</string>
+        <string name="camera_desc">Photography possibility</string>
+        <string name="submit_button">Submit Report</string>
+
+
+    <string name="msg_select_governorate">Please select a governorate</string>
+    <string name="msg_select_authority">Please select competent authority</string>
+    <string name="msg_select_issue_type">Please select issue type</string>
+    <string name="msg_select_date">Please select date</string>
+    <string name="msg_write_title">Please write a title for the issue</string>
+    <string name="msg_write_description">Please describe the issue</string>
+    <string name="msg_select_location">Please select a location on the map</string>
+    <string name="msg_report_success">Report submitted successfully!</string>
+    <string name="msg_report_failed">Failed to submit report</string>
+
+    <!-- ...status page ... -->
+    <string name="status_title">Status</string>
+    <string name="new_status">New</string>
 
 
 

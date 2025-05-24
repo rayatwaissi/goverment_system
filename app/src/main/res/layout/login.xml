@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-thin"
             android:gravity="center"
-            android:text="Login"
+            android:text="@string/login_title"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="48sp"
@@ -32,7 +32,7 @@
             android:layout_height="56dp"
             android:layout_marginTop="24dp"
             android:background="@drawable/editbox_background"
-            android:hint="Email"
+            android:hint="@string/email_hint"
             android:inputType="textEmailAddress"
             android:paddingStart="16dp"
             android:textSize="20sp" />
@@ -43,9 +43,11 @@
             android:layout_height="56dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/editbox_background"
-            android:hint="Password"
+            android:hint="@string/password_hint"
             android:inputType="textPassword"
             android:paddingStart="16dp"
+            android:gravity="start|center_vertical"
+            android:textAlignment="viewStart"
             android:textSize="20sp" />
 
         <Button
@@ -55,7 +57,7 @@
             android:layout_marginTop="20dp"
             android:backgroundTint="#02394F"
             android:fontFamily="sans-serif-medium"
-            android:text="LOGIN"
+            android:text="@string/login_button"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
@@ -69,10 +71,11 @@
             android:clickable="true"
             android:gravity="center"
             android:padding="12dp"
-            android:text="Don’t have an account? Sign Up"
+            android:text="@string/signup_prompt"
             android:textAlignment="center"
             android:textColor="#FEFFF6"
             android:textSize="16sp" />
+
 
     </LinearLayout>
 </ScrollView>

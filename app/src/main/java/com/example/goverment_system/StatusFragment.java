@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,6 +30,8 @@ public class StatusFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.report_status, container, false);
 
+        TextView status=view.findViewById(R.id.status);
+        status.setText(R.string.status_title);
         arrow_back = view.findViewById(R.id.backArrow);
         arrow_back.setOnClickListener(v -> {
             requireActivity().getSupportFragmentManager()

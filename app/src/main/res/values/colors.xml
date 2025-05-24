@@ -2,4 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="status_resolved">#2E7D32</color> <!-- Green -->
+    <color name="status_rejected">#E53935</color> <!-- Red -->
+    <color name="status_in_review">#FB8C00</color> <!-- Orange -->
+    <color name="status_pending">#FDD835</color> <!-- Yellow -->
 </resources>

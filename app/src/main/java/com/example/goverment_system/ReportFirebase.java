@@ -39,4 +39,5 @@ public class ReportFirebase {
                           String imageUrl, String userEmail) {
         this(governorate, authority, issueType, date, title, description, latitude, longitude, imageUrl, userEmail, "New");
     }
+
 }

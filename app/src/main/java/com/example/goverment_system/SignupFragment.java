@@ -23,12 +23,26 @@ public class SignupFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
 
         View view = inflater.inflate(R.layout.signup, container, false);
+
+
+        TextView titleTV = view.findViewById(R.id.signup_page);
         EditText nameET = view.findViewById(R.id.name);
         EditText emailET = view.findViewById(R.id.email);
         EditText passwordET = view.findViewById(R.id.password);
         EditText confirmPasswordET = view.findViewById(R.id.ConfirmPass);
         EditText phoneET = view.findViewById(R.id.phone);
         Button registerBtn = view.findViewById(R.id.signup_btn);
+        TextView tvlogin = view.findViewById(R.id.tvlogin);
+
+        // تعيين النصوص حسب لغة الجهاز
+        titleTV.setText(R.string.signup_title);
+        nameET.setHint(R.string.full_name_hint);
+        emailET.setHint(R.string.email_hint);
+        phoneET.setHint(R.string.phone_hint);
+        passwordET.setHint(R.string.password_hint);
+        confirmPasswordET.setHint(R.string.confirm_password_hint);
+        registerBtn.setText(R.string.signup_button);
+        tvlogin.setText(R.string.login_prompt);
 
         registerBtn.setOnClickListener(v -> {
             String name = nameET.getText().toString().trim();
@@ -38,17 +52,22 @@ public class SignupFragment extends Fragment {
             String phone = phoneET.getText().toString().trim();
 
             if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || phone.isEmpty()) {
-                Toast.makeText(getContext(), "please ,fill all the fields", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getString(R.string.fill_all_fields), Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if(!email.contains("@"))
+            {
+                Toast.makeText(getContext(), getString(R.string.email_check), Toast.LENGTH_SHORT).show();
                 return;
             }
             if(!phone.matches("^(079|078|077)[0-9]{7}$"))
             {
-                Toast.makeText(getContext(), "Phone number is invalid", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),  getString(R.string.invalid_phone), Toast.LENGTH_SHORT).show();
                 return;
             }
 
             if (!password.equals(confirmPassword)) {
-                Toast.makeText(getContext(), "The passwords do not match", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getString(R.string.passwords_not_match), Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -64,23 +83,25 @@ public class SignupFragment extends Fragment {
                             User user = new User(name, email, phone);
                             dbRef.child(userId).setValue(user)
                                     .addOnSuccessListener(aVoid -> {
-                                        Toast.makeText(getContext(), "Registration successful and data saved", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getContext(),getString(R.string.registration_success), Toast.LENGTH_SHORT).show();
                                      //انتقل لصفحة home
                                       requireActivity().getSupportFragmentManager().beginTransaction()
                                               .replace(R.id.fragment_main,new HomeFragment())
                                               .addToBackStack(null).commit();
                                     })
                                     .addOnFailureListener(e -> {
-                                        Toast.makeText(getContext(), "Data storage failed " + e.getMessage(), Toast.LENGTH_LONG).show();
+                                        String message = getString(R.string.data_failed, e.getMessage());
+                                        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
                                     });
 
                         } else {
-                            Toast.makeText(getContext(), "Registration failed " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            String message = getString(R.string.registration_failed, task.getException().getMessage());
+                            Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
                         }
                     });
         });
 
-        TextView tvlogin = view.findViewById(R.id.tvlogin);
+
         tvlogin.setOnClickListener(v -> goToLogin());
 
 

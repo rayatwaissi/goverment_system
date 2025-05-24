@@ -17,7 +17,12 @@ public class MainFragment extends Fragment {
 
         Button login = view.findViewById(R.id.login);
         Button signup = view.findViewById(R.id.signup);
+        TextView welcomeText = view.findViewById(R.id.wlcm);
 
+        // ضبط النصوص حسب لغة الجهاز
+        login.setText(R.string.login);
+        signup.setText(R.string.sign_up);
+        welcomeText.setText(R.string.welcome);
 
 
 

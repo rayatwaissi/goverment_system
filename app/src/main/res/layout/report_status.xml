@@ -10,12 +10,14 @@
         android:id="@+id/backArrow"
         android:layout_width="50dp"
         android:layout_height="48dp"
+        android:layout_gravity="left"
         android:background="@android:color/transparent"
         android:contentDescription="arrow_back"
-        app:srcCompat="@drawable/baseline_arrow_back_status" />
+        app:srcCompat="@drawable/baseline_arrow_back_status"
+        android:layoutDirection="ltr"/>
 
     <TextView
-        android:id="@+id/report_issue"
+        android:id="@+id/status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
