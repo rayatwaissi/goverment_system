@@ -18,23 +18,32 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mAuth = FirebaseAuth.getInstance();
         View view = inflater.inflate(R.layout.login, container, false);
+
+        TextView titleTV = view.findViewById(R.id.login_page);
         EditText emailET = view.findViewById(R.id.email_login);
         EditText passwordET = view.findViewById(R.id.password_login);
         Button loginBtn = view.findViewById(R.id.login_btn);
+        TextView signUpTV = view.findViewById(R.id.tvSignUp);
+
+        titleTV.setText(R.string.login_title);
+        emailET.setHint(R.string.email_hint);
+        passwordET.setHint(R.string.password_hint);
+        loginBtn.setText(R.string.login_button);
+        signUpTV.setText(R.string.signup_prompt);
 
         loginBtn.setOnClickListener(v -> {
             String email = emailET.getText().toString().trim();
             String password = passwordET.getText().toString().trim();
 
             if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(getContext(), "please enter the password and email field", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),  getString(R.string.enter_email_password), Toast.LENGTH_SHORT).show();
                 return;
             }
 
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            Toast.makeText(getContext(), "Logged in successfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(),getString(R.string.login_success), Toast.LENGTH_SHORT).show();
                             // انتقال إلى الصفحة الرئيسية
 
                             requireActivity().getSupportFragmentManager().beginTransaction()
@@ -42,7 +51,7 @@ public class LoginFragment extends Fragment {
                                     .addToBackStack(null)
                                     .commit();
                         } else {
-                            Toast.makeText(getContext(), "Failed ,inccorect password or email" , Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), getString(R.string.login_failed) , Toast.LENGTH_LONG).show();
                         }
                     });
         });

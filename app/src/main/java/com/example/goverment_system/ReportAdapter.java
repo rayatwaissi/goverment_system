@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import java.util.List;
 
@@ -52,21 +53,19 @@ public class ReportAdapter extends ArrayAdapter<Report> {
         // تغيير اللون حسب الحالة
         switch (report.getStatus()) {
             case "Resolved":
-                statusBadge.setBackgroundColor(Color.parseColor("#2E7D32")); // أخضر
-
+                statusBadge.setBackgroundColor(ContextCompat.getColor(context, R.color.status_resolved));
                 break;
             case "Rejected":
-                statusBadge.setBackgroundColor(Color.parseColor("#E53935")); // أحمر
+                statusBadge.setBackgroundColor(ContextCompat.getColor(context, R.color.status_rejected));
                 break;
             case "In Review":
-                statusBadge.setBackgroundColor(Color.parseColor("#FB8C00")); // برتقالي
+                statusBadge.setBackgroundColor(ContextCompat.getColor(context, R.color.status_in_review));
                 break;
             case "Pending":
-                statusBadge.setBackgroundColor(Color.parseColor("#FDD835")); // أصفر
+                statusBadge.setBackgroundColor(ContextCompat.getColor(context, R.color.status_pending));
                 break;
             default:
                 statusBadge.setBackgroundColor(Color.GRAY);
-                break;
         }
         return convertView;
     }

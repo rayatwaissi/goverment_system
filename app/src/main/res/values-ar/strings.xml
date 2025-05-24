@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="welcome">مرحباً</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="sign_up">إنشاء حساب</string>
+
+    <!-- ... login page ... -->
+    <string name="login_title">تسجيل الدخول</string>
+    <string name="email_hint">البريد الإلكتروني</string>
+    <string name="password_hint">كلمة المرور</string>
+    <string name="login_button">دخول</string>
+    <string name="signup_prompt">ليس لديك حساب؟ أنشئ حساب</string>
+
+    <string name="enter_email_password">يرجى إدخال البريد الإلكتروني وكلمة المرور</string>
+    <string name="login_success">تم تسجيل الدخول بنجاح</string>
+    <string name="login_failed">فشل تسجيل الدخول، البريد الإلكتروني أو كلمة المرور غير صحيحة</string>
+
+    <!-- ... signup page ... -->
+    <string name="signup_title">إنشاء حساب</string>
+    <string name="full_name_hint">الاسم الكامل</string>
+    <string name="phone_hint">رقم الهاتف</string>
+    <string name="confirm_password_hint">تأكيد كلمة المرور</string>
+    <string name="signup_button">تسجيل</string>
+    <string name="login_prompt">لديك حساب؟ سجل الدخول</string>
+
+    <string name="fill_all_fields">يرجى تعبئة جميع الحقول</string>
+    <string name="invalid_phone">رقم الهاتف غير صالح</string>
+    <string name="passwords_not_match">كلمتا المرور غير متطابقتين</string>
+    <string name="registration_success">تم التسجيل بنجاح وتم حفظ البيانات</string>
+    <string name="data_failed">فشل حفظ البيانات: %1$s</string>
+    <string name="registration_failed">فشل التسجيل: %1$s</string>
+    <string name="email_check">الايميل غير صحيح</string>
+
+    <!-- ...home page ... -->
+    <string name="home"> الرئيسية  </string>
+    <string name="report_issue">الإبلاغ عن مشكلة</string>
+    <string name="view_reports_status">عرض حالة البلاغات</string>
+
+    <!-- ...report_issue page ... -->
+    <string-array name="governorates_array">
+        <item>اختر المحافظة</item>
+        <item>عمّان</item>
+        <item>الزرقاء</item>
+        <item>إربد</item>
+        <item>العقبة</item>
+        <item>البلقاء</item>
+        <item>مأدبا</item>
+        <item>المفرق</item>
+        <item>جرش</item>
+        <item>عجلون</item>
+        <item>الكرك</item>
+        <item>الطفيلة</item>
+        <item>معان</item>
+    </string-array>
+
+    <string-array name="competent_authority">
+        <item>اختر الجهة المختصة</item>
+        <item name="Educatin">وزارة التربية والتعليم</item>
+        <item name="Transportation">وزارة النقل</item>
+        <item  name="Health">وزارة الصحة</item>
+        <item name="Tourism">وزارة السياحة</item>
+        <item name="Water">وزارة المياه والري</item>
+        <item  name="Environment">وزارة البيئة</item>
+        <item  name="Labor">وزارة العمل</item>
+        <item  name="Communication_IT">وزارة الاتصالات وتكنولوجيا المعلومات </item>
+    </string-array>
+
+    <string-array name="IssueEducation">
+        <item>اختر نوع المشكلة</item>
+        <item>مشاكل في البنية التحتية للمدارس</item>
+        <item>شكاوى تتعلق بالهيئة التدريسية</item>
+        <item>مشاكل أكاديمية وتعليمية</item>
+        <item>شكاوى متعلقة بالإدارة</item>
+        <item>شكاوى تتعلق بالسلامة</item>
+        <item>شكاوى أولياء الأمور</item>
+        <item>أخرى</item>
+    </string-array>
+
+    <string-array name="IssueTransportation">
+        <item>اختر نوع المشكلة</item>
+        <item>سوء حالة الطرق</item>
+        <item>تأخيرات أو إلغاءات في وسائل النقل العام</item>
+        <item>وسائل نقل عام غير آمنة</item>
+        <item>سائقون متهورون أو غير مرخصين</item>
+        <item>إشارات مرور أو لافتات غير فعالة</item>
+        <item>شكاوى حول سيارات الأجرة أو خدمات النقل</item>
+        <item>نقص وسائل النقل العام في بعض المناطق</item>
+        <item>عدم وجود مسارات آمنة للدراجات الهوائية</item>
+        <item>أخرى</item>
+    </string-array>
+
+    <string-array name="IssueHealth">
+        <item>اختر نوع المشكلة</item>
+        <item>مشاكل في الخدمات الطبية</item>
+        <item>نقص في الموارد</item>
+        <item>مشاكل في البنية التحتية والنظافة</item>
+        <item>مشاكل تنظيمية</item>
+        <item>مشاكل في خدمات الطوارئ والإسعاف</item>
+        <item>أخرى</item>
+    </string-array>
+
+    <string-array name="IssueTourist">
+        <item>اختر نوع المشكلة</item>
+        <item>رداءة الخدمات السياحية</item>
+        <item>استغلال السياح</item>
+        <item>إهمال وصيانة المواقع السياحية</item>
+        <item>سوء النظافة والمرافق العامة</item>
+        <item>مخالفات تراخيص سياحية</item>
+        <item>نقص في الإرشاد والتوجيه السياحي</item>
+        <item>مشاكل في وسائل النقل السياحي</item>
+        <item>أخرى</item>
+    </string-array>
+
+    <string-array name="IssueWater">
+        <item>اختر نوع المشكلة</item>
+        <item>انقطاع المياه</item>
+        <item>عطل في عداد المياه</item>
+        <item>تلوث مياه الشرب</item>
+        <item>تأخر في أعمال الصيانة</item>
+        <item>فاتورة مياه مرتفعة</item>
+        <item>تسرب في شبكة المياه</item>
+        <item>انفجار أنبوب مياه</item>
+        <item>أخرى</item>
+    </string-array>
+
+    <string-array name="IssueEnvironment">
+        <item>اختر نوع المشكلة</item>
+        <item>حرق النفايات</item>
+        <item>تلوث بيئي</item>
+        <item>قطع الأشجار والتعدي على الغابات</item>
+        <item>مخالفات المصانع والمنشآت</item>
+        <item>مخلفات البناء والهدم</item>
+        <item>الاعتداء على المحميات الطبيعية</item>
+        <item>أخرى</item>
+    </string-array>
+
+    <string-array name="IssueLabor">
+        <item>اختر نوع المشكلة</item>
+        <item>العمل بدون عقد</item>
+        <item>تأخير أو عدم دفع الرواتب</item>
+        <item>التمييز في مكان العمل</item>
+        <item>العمل في ظروف غير آمنة أو غير صحية</item>
+        <item>عدم تسجيل العمال في الضمان الاجتماعي</item>
+        <item>الفصل التعسفي</item>
+        <item>أخرى</item>
+    </string-array>
+
+    <string-array name="IssueCommunication">
+        <item>اختر نوع المشكلة</item>
+        <item>انقطاع أو ضعف الإنترنت</item>
+        <item>ضعف أو انعدام الشبكة</item>
+        <item>مشاكل في الخدمات الحكومية الإلكترونية</item>
+        <item>احتيال إلكتروني أو محاولات نصب رقمي</item>
+        <item>مشاكل في الأمن السيبراني</item>
+        <item>أخرى</item>
+    </string-array>
+
+          <string name="back_desc">رجوع</string>
+        <string name="report_issue_title">تقديم بلاغ</string>
+        <string name="select_date_hint">اختر التاريخ</string>
+        <string name="write_title_label">اكتب عنوانًا للموضوع</string>
+        <string name="title_hint">أدخل عنوان البلاغ .....</string>
+        <string name="desc_label">وصف المشكلة</string>
+        <string name="desc_hint">اكتب هنا .....</string>
+        <string name="location_label">حدد الموقع:</string>
+       <string name="map_desc">الموقع</string>
+       <string name="camera_desc">إمكانية التصوير</string>
+        <string name="submit_button">إرسال البلاغ</string>
+
+    <string name="msg_select_governorate">يرجى اختيار المحافظة</string>
+    <string name="msg_select_authority">يرجى اختيار الجهة المختصة</string>
+    <string name="msg_select_issue_type">يرجى اختيار نوع المشكلة</string>
+    <string name="msg_select_date">يرجى اختيار التاريخ</string>
+    <string name="msg_write_title">يرجى كتابة عنوان للمشكلة</string>
+    <string name="msg_write_description">يرجى وصف المشكلة</string>
+    <string name="msg_select_location">يرجى اختيار موقع على الخريطة</string>
+    <string name="msg_report_success">تم إرسال البلاغ بنجاح!</string>
+    <string name="msg_report_failed">فشل في إرسال البلاغ</string>
+
+
+    <string name="status_title">الحالة</string>
+    <string name="new_status">جديد</string>
+</resources>

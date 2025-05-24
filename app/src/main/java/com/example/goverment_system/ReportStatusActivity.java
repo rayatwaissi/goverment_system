@@ -2,6 +2,7 @@ package com.example.goverment_system;
 
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,12 +22,15 @@ public class ReportStatusActivity extends AppCompatActivity {
     DatabaseReference reportsRef;
     FirebaseAuth mAuth;
     String userEmail;
+    TextView status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.report_status); // ربط مع XML
 
+
+        status.setText(getString(R.string.status_title));
         // تعريف العناصر
         listViewReports = findViewById(R.id.listViewReports);
         reportList = new ArrayList<>();

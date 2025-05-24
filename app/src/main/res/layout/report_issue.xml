@@ -12,14 +12,14 @@
         android:paddingBottom="32dp">
 
         <TextView
-            android:id="@+id/report_issue"
+            android:id="@+id/status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="sans-serif-thin"
             android:gravity="center"
-            android:text="Report issue"
+            android:text="@string/report_issue_title"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="48sp"
@@ -42,14 +42,17 @@
                     android:id="@+id/backArrow"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:layout_gravity="left"
                     android:background="@android:color/transparent"
-                    android:contentDescription="arrow_back"
+                    android:contentDescription="@string/back_desc"
+                    android:layoutDirection="ltr"
                     app:srcCompat="@drawable/baseline_arrow_back_24" />
 
                 <Spinner
                     android:id="@+id/spinner_governorates"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
+
                     android:layout_marginTop="20dp" />
 
                 <Spinner
@@ -71,14 +74,15 @@
                     android:layout_height="48dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/edit_box"
-                    android:hint="Select Date"
+                    android:hint="@string/select_date_hint"
                     android:inputType="date" />
 
                 <TextView
+                    android:id="@+id/Topic"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Write a title for the topic"
+                    android:text="@string/write_title_label"
                     android:textColor="#051422"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -88,14 +92,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:background="@drawable/edit_box"
-                    android:hint="Enter issue title ....."
+                    android:hint="@string/title_hint"
                     android:inputType="text" />
 
                 <TextView
+                    android:id="@+id/descLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Describe the issue"
+                    android:text="@string/desc_label"
                     android:textColor="#051422"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -105,15 +110,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:background="@drawable/edit_box"
-                    android:hint="Write here ....."
+                    android:hint="@string/desc_hint"
                     android:inputType="textMultiLine"
                     android:gravity="start|top" />
 
                 <TextView
+                    android:id="@+id/LocationLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Determine the location:"
+                    android:text="@string/location_label"
                     android:textColor="#051422"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -124,7 +130,7 @@
                     android:layout_height="300dp"
                     android:layout_marginTop="16dp"
                     android:clickable="true"
-                    android:contentDescription="location"
+                    android:contentDescription="@string/map_desc"
                     android:focusable="true" />
 
                 <ImageButton
@@ -133,7 +139,7 @@
                     android:layout_height="48dp"
                     android:layout_marginTop="12dp"
                     android:background="@android:color/transparent"
-                    android:contentDescription="Photography possibility"
+                    android:contentDescription="@string/camera_desc"
                     android:scaleType="fitCenter"
                     app:srcCompat="@drawable/ic_camera" />
 
@@ -143,7 +149,7 @@
                     android:layout_height="50dp"
                     android:layout_marginTop="16dp"
                     android:backgroundTint="#D6D6D6"
-                    android:text="Submit Report"
+                    android:text="@string/submit_button"
                     android:textColor="#051422"
                     android:textSize="20sp"
                     app:cornerRadius="12dp" />

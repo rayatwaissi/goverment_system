@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.Manifest;
 
@@ -77,7 +78,8 @@ public class ReportFragment extends Fragment {
 
 
         ImageButton arrow_back=view.findViewById(R.id.backArrow);
-        arrow_back.setOnClickListener(new View.OnClickListener() {
+
+                arrow_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 requireActivity().getSupportFragmentManager().beginTransaction().
@@ -121,91 +123,60 @@ simple_spinner_item`          | عرض العنصر المُختار حاليً�
         spinner_authority.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-               // String selected_type=spinner_authority.getSelectedItem().toString();
-                String selectedAuthority = parent.getItemAtPosition(position).toString();
+                int arrayResId = -1; // الافتراضي: لا شيء
 
-
-                if(selectedAuthority.equals("Ministry of Education")){
-                ArrayAdapter<CharSequence> adapter2=ArrayAdapter.createFromResource(requireContext()
-                ,R.array.IssueEducation
-                ,android.R.layout.simple_spinner_item);
-
-                adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                issue_type.setAdapter(adapter2);}
-                else
-
-                if(selectedAuthority.equals("Ministry of Transportation")){
-                    ArrayAdapter<CharSequence> adapter3=ArrayAdapter.createFromResource(requireContext()
-                            ,R.array.IssueTransportation
-                            ,android.R.layout.simple_spinner_item);
-                    adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    issue_type.setAdapter(adapter3);
+                switch (position) {
+                    case 1: // Ministry of Education
+                        arrayResId = R.array.IssueEducation;
+                        break;
+                    case 2: // Ministry of Transportation
+                        arrayResId = R.array.IssueTransportation;
+                        break;
+                    case 3: // Ministry of Health
+                        arrayResId = R.array.IssueHealth;
+                        break;
+                    case 4: // Ministry of Tourism
+                        arrayResId = R.array.IssueTourist;
+                        break;
+                    case 5: // Ministry of Water and Irrigation
+                        arrayResId = R.array.IssueWater;
+                        break;
+                    case 6: // Ministry of Environment
+                        arrayResId = R.array.IssueEnvironment;
+                        break;
+                    case 7: // Ministry of Labor
+                        arrayResId = R.array.IssueLabor;
+                        break;
+                    case 8: // Ministry of Communications and IT
+                        arrayResId = R.array.IssueCommunication;
+                        break;
                 }
-               else
-                   if(selectedAuthority.equals("Ministry of Health"))
-                   {
-                       ArrayAdapter<CharSequence> adapter4=ArrayAdapter.createFromResource(requireContext()
-                       ,R.array.IssueHealth
-                       , android.R.layout.simple_spinner_item);
-                       adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                       issue_type.setAdapter(adapter4);
-                   }
-                   else
-                       if(selectedAuthority.equals("Ministry of Tourism"))
-                       {
-                           ArrayAdapter<CharSequence> adapter5=ArrayAdapter.createFromResource(requireContext()
-                           ,R.array.IssueTourist
-                           , android.R.layout.simple_spinner_item);
-                           adapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                           issue_type.setAdapter(adapter5);
-                       }
 
-                       else
-                       if(selectedAuthority.equals("Ministry of Water and Irrigation"))
-                       {
-                           ArrayAdapter<CharSequence> adapter5=ArrayAdapter.createFromResource(requireContext()
-                                   ,R.array.IssueWater
-                                   , android.R.layout.simple_spinner_item);
-                           adapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                           issue_type.setAdapter(adapter5);
-                       }
-
-                       else
-                       if(selectedAuthority.equals("Ministry of Environment"))
-                       {
-                           ArrayAdapter<CharSequence> adapter5=ArrayAdapter.createFromResource(requireContext()
-                                   ,R.array.IssueEnvironment
-                                   , android.R.layout.simple_spinner_item);
-                           adapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                           issue_type.setAdapter(adapter5);
-                       }
-                       else
-                       if(selectedAuthority.equals("Ministry of Labor"))
-                       {
-                           ArrayAdapter<CharSequence> adapter5=ArrayAdapter.createFromResource(requireContext()
-                                   ,R.array.IssueLabor
-                                   , android.R.layout.simple_spinner_item);
-                           adapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                           issue_type.setAdapter(adapter5);
-                       }
-                       else
-                       if(selectedAuthority.equals("Ministry of Communications and Information Technology"))
-                       {
-                           ArrayAdapter<CharSequence> adapter5=ArrayAdapter.createFromResource(requireContext()
-                                   ,R.array.IssueCommunication
-                                   , android.R.layout.simple_spinner_item);
-                           adapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                           issue_type.setAdapter(adapter5);
-                       }
-
+                if (arrayResId != -1) {
+                    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                            requireContext(),
+                            arrayResId,
+                            android.R.layout.simple_spinner_item
+                    );
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    issue_type.setAdapter(adapter);
+                } else {
+                    issue_type.setAdapter(null); // أو يمكنك إخفاء السبينر
+                }
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
+            public void onNothingSelected(AdapterView<?> parent) {
+                // يمكن تركه فارغًا
+            }
         });
+
+
+
 //-----------------------------------------------------------------------------------------------------------------------------
 
         EditText editTextDate = view.findViewById(R.id.editTextDate);
+        editTextDate.setHint(R.string.select_date_hint);
         editTextDate.setOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
             int year = calendar.get(calendar.YEAR);
@@ -238,13 +209,34 @@ simple_spinner_item`          | عرض العنصر المُختار حاليً�
         });
 
 
+//--------------------------------------------------------------------------------------
+        EditText title=view.findViewById(R.id.Title_txt);
+        title.setText(R.string.report_issue);
 
 
+
+        TextView Title_label = view.findViewById(R.id.Topic);
+        Title_label.setText(R.string.write_title_label);
+
+        EditText titlehint=view.findViewById(R.id.Title_txt);
+        titlehint.setHint(R.string.title_hint);
+
+
+        TextView descLabel = view.findViewById(R.id.descLabel);
+        descLabel.setText(R.string.desc_label);
+
+        EditText desc = view.findViewById(R.id.DisTxt);
+        desc.setHint(R.string.desc_hint);
+
+
+        TextView LocationLabel = view.findViewById(R.id.LocationLabel);
+        LocationLabel.setText(R.string.location_label);
 
 
 //--------------------------------------------------------------------------------------------------------------------------
     Button submitBtn=view.findViewById(R.id.submit_report);
 
+       submitBtn.setText(R.string.submit_button);
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -252,45 +244,46 @@ simple_spinner_item`          | عرض العنصر المُختار حاليً�
                 int selectedauthority = spinner_authority.getSelectedItemPosition();
                 int selected_issue_type = issue_type.getSelectedItemPosition();
 
-                EditText EditDATE=view.findViewById(R.id.editTextDate);
-                String date=EditDATE.getText().toString().trim();
+               // EditText EditDATE=view.findViewById(R.id.editTextDate);
+                String date=editTextDate.getText().toString().trim();
 
-                EditText title=view.findViewById(R.id.Title_txt);
+
                 String titleSt=title.getText().toString().trim();
 
-                EditText Edit=view.findViewById(R.id.DisTxt);
-                String discription=Edit.getText().toString().trim() ;
+
+                String discription=desc.getText().toString().trim() ;
 
 
 
                 if (selectedGovernorate == 0) {
-                    Toast.makeText(getContext(), "Please select a governorate", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), getString(R.string.msg_select_governorate), Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 if (selectedauthority == 0) {
-                    Toast.makeText(getContext(), "Please select competent authority", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), getString(R.string.msg_select_authority), Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 if (selected_issue_type == 0) {
-                    Toast.makeText(getContext(), "Please select issue type", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), getString(R.string.msg_select_issue_type), Toast.LENGTH_LONG).show();
                     return;
                 }
                 if (date.isEmpty()) {
-                    Toast.makeText(getContext(), "Please select date", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), getString(R.string.msg_select_date), Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 if (titleSt.isEmpty()) {
-                    Toast.makeText(getContext(), "Please write a title for the issue ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),  getString(R.string.msg_write_title), Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 if (discription.isEmpty()) {
-                    Toast.makeText(getContext(), "Please describe the issue", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), getString(R.string.msg_write_description), Toast.LENGTH_LONG).show();
                     return;
                 }
+
 
 // داخل onClick زر الإرسال بعد التحقق من صحة البيانات:
 
@@ -307,7 +300,7 @@ simple_spinner_item`          | عرض العنصر المُختار حاليً�
                     lat = selectedLocation.latitude;
                     lng = selectedLocation.longitude;
                 } else {
-                    Toast.makeText(getContext(), "Please select a location on the map", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), getString(R.string.msg_select_location), Toast.LENGTH_LONG).show();
                     return;
                 }
 
@@ -339,10 +332,10 @@ simple_spinner_item`          | عرض العنصر المُختار حاليً�
                 if (reportId != null) {
                     databaseReference.child(reportId).setValue(report).addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            Toast.makeText(getContext(), "Report submitted successfully!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), getString(R.string.msg_report_success), Toast.LENGTH_LONG).show();
                             // هنا ممكن تمسح الحقول أو تنقل المستخدم لشاشة أخرى
                         } else {
-                            Toast.makeText(getContext(), "Failed to submit report: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), getString(R.string.msg_report_failed)+ task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
                 }
