@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string name="app_name">متتبع القضايا</string>
     <string name="welcome">مرحباً</string>
     <string name="login">تسجيل الدخول</string>
     <string name="sign_up">إنشاء حساب</string>
@@ -15,7 +15,7 @@
     <string name="enter_email_password">يرجى إدخال البريد الإلكتروني وكلمة المرور</string>
     <string name="login_success">تم تسجيل الدخول بنجاح</string>
     <string name="login_failed">فشل تسجيل الدخول، البريد الإلكتروني أو كلمة المرور غير صحيحة</string>
-
+    <string name="forgot_password">هل نسيت كلمة السر؟</string>
     <!-- ... signup page ... -->
     <string name="signup_title">إنشاء حساب</string>
     <string name="full_name_hint">الاسم الكامل</string>
@@ -186,4 +186,10 @@
     <string name="status_resolved">تم الحل</string>
     <string name="status_rejected">مرفوض</string>
 
+    <string name="change_pass_page">تغيير كلمة المرور</string>
+    <string name="code_confirm">أدخل الكود</string>
+    <string name="submit">إرسال</string>
+    <string name="enter_email">الرجاء إدخال ايميل صحيح</string>
+    <string name="enter_code">الرجاء إدخال الكود بشكل صحيح</string>
+    <string name="ch_pass">الرجاء كتابة كلمة مرور بالشكل الصحيح</string>
 </resources>

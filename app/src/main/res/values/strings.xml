@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">goverment_system</string>
+    <string name="app_name">Issue Tracker</string>
     <string-array name="governorates_array">
         <item>Select Governorate </item>
         <item>Amman</item>
@@ -135,6 +135,7 @@
     <string name="enter_email_password">Please enter the email and password fields</string>
     <string name="login_success">Logged in successfully</string>
     <string name="login_failed">Failed, incorrect password or email</string>
+    <string name="forgot_password">Forgot your password?</string>
 
     <!-- ... signup page ... -->
     <string name="signup_title">Sign Up</string>
@@ -190,6 +191,10 @@
     <string name="status_resolved">Resolved</string>
     <string name="status_rejected">Rejected</string>
 
-
-
+    <string name="change_pass_page">Change Password</string>
+    <string name="code_confirm">Enter Code</string>
+    <string name="submit">Submit</string>
+<string name="enter_email">please enter the email correctly</string>
+    <string name="enter_code">please enter the code correctly</string>
+    <string name="ch_pass">please write password correctly</string>
 </resources>

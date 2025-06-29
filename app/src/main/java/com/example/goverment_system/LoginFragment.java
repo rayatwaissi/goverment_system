@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginFragment extends Fragment {
+
     private FirebaseAuth mAuth;
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mAuth = FirebaseAuth.getInstance();
@@ -22,7 +23,7 @@ public class LoginFragment extends Fragment {
         TextView titleTV = view.findViewById(R.id.login_page);
         EditText emailET = view.findViewById(R.id.email_login);
         EditText passwordET = view.findViewById(R.id.password_login);
-        Button loginBtn = view.findViewById(R.id.login_btn);
+        Button loginBtn = view.findViewById(R.id.sub_code);
         TextView signUpTV = view.findViewById(R.id.tvSignUp);
 
         titleTV.setText(R.string.login_title);
@@ -57,6 +58,10 @@ public class LoginFragment extends Fragment {
         });
         TextView tvsignup = view.findViewById(R.id.tvSignUp);
         tvsignup.setOnClickListener(v -> goTSignUp());
+
+        TextView forgot=view.findViewById(R.id.forgot_pass);
+        forgot.setText(R.string.forgot_password);
+     forgot.setOnClickListener(v -> goTchpass());
         return view;
 
 
@@ -65,6 +70,12 @@ public class LoginFragment extends Fragment {
      private void goTSignUp() {
         requireActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_main, new MainFragment())
+                .addToBackStack(null)
+                .commit();
+    }
+    private void goTchpass() {
+        requireActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_main, new Change_passFragment())
                 .addToBackStack(null)
                 .commit();
     }
