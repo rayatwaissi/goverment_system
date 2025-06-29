@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">goverment_system</string>
+    <string name="app_name">Issue Tracker</string>
     <string-array name="governorates_array">
         <item>Select Governorate </item>
         <item>Amman</item>

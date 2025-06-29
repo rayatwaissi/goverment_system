@@ -47,30 +47,44 @@ public class Change_passFragment extends Fragment {
         confirm_password.setVisibility(View.INVISIBLE);
         confirm_code.setOnClickListener(v -> {
             String enter_email = email.getText().toString().trim();
-            String Change_pass = pass.getText().toString().trim();
-            String confirm_pass = confirm_password.getText().toString().trim();
+
             String confirm = code.getText().toString().trim();
 
             if (enter_email.isEmpty() ) {
                 Toast.makeText(getContext(),  getString(R.string.enter_email), Toast.LENGTH_SHORT).show();
                 return;
-            } else if (confirm.isEmpty()) {
+            }
+            if (confirm.isEmpty()) {
                 Toast.makeText(getContext(),  getString(R.string.enter_code), Toast.LENGTH_SHORT).show();
-                confirm_code.setText("Change Password");
                     return;
                 }
 
-            else if (pass.getVisibility()==View.INVISIBLE && confirm_password.getVisibility()==View.INVISIBLE) {
+            if (pass.getVisibility() == View.INVISIBLE && confirm_password.getVisibility() == View.INVISIBLE) {
                 pass.setVisibility(View.VISIBLE);
                 confirm_password.setVisibility(View.VISIBLE);
-                if(Change_pass.isEmpty())
-                Toast.makeText(getContext(), getString(R.string.ch_pass), Toast.LENGTH_SHORT).show();
-                return;
-            } else if (!confirm_pass.equals(Change_pass) || confirm_pass.isEmpty()) {
-                Toast.makeText(getContext(), getString(R.string.passwords_not_match), Toast.LENGTH_SHORT).show();
-
+                confirm_code.setText(R.string.change_pass_page); // مثلاً: "تأكيد تغيير كلمة المرور"
                 return;
             }
+
+            // نقرأ كلمات المرور فقط بعد أن تظهر الحقول
+            String Change_pass = pass.getText().toString().trim();
+            String confirm_pass = confirm_password.getText().toString().trim();
+
+            if (Change_pass.isEmpty()) {
+                Toast.makeText(getContext(), getString(R.string.ch_pass), Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (confirm_pass.isEmpty()) {
+                Toast.makeText(getContext(), getString(R.string.passwords_not_match), Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (!confirm_pass.equals(Change_pass)) {
+                Toast.makeText(getContext(), getString(R.string.passwords_not_match), Toast.LENGTH_SHORT).show();
+                return;
+            }
+
         });
 
         return view;
