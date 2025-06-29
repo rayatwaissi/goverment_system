@@ -25,15 +25,17 @@ public class Change_passFragment extends Fragment {
         EditText code=view.findViewById(R.id.code_confirm);
         EditText pass=view.findViewById(R.id.password);
         EditText confirm_password=view.findViewById(R.id.confirm_password);
-        Button confirm_code=view.findViewById(R.id.sub_code);
+        Button confirm_code_btn=view.findViewById(R.id.sub_code);
 
         tvchange.setText(R.string.change_pass_page);
         email.setHint(R.string.email_hint);
         pass.setHint(R.string.password_hint);
         code.setHint(R.string.code_confirm);
         confirm_password.setHint(R.string.confirm_password_hint);
+         confirm_code_btn.setText(R.string.submit);
 
         ImageButton back= view.findViewById(R.id.back_to_welcom);
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,7 +47,7 @@ public class Change_passFragment extends Fragment {
         });
         pass.setVisibility(View.INVISIBLE);
         confirm_password.setVisibility(View.INVISIBLE);
-        confirm_code.setOnClickListener(v -> {
+        confirm_code_btn.setOnClickListener(v -> {
             String enter_email = email.getText().toString().trim();
 
             String confirm = code.getText().toString().trim();
@@ -62,7 +64,7 @@ public class Change_passFragment extends Fragment {
             if (pass.getVisibility() == View.INVISIBLE && confirm_password.getVisibility() == View.INVISIBLE) {
                 pass.setVisibility(View.VISIBLE);
                 confirm_password.setVisibility(View.VISIBLE);
-                confirm_code.setText(R.string.change_pass_page); // مثلاً: "تأكيد تغيير كلمة المرور"
+                confirm_code_btn.setText(R.string.change_pass_page); // مثلاً: "تأكيد تغيير كلمة المرور"
                 return;
             }
 
