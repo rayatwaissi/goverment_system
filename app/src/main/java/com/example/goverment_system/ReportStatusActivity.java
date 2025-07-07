@@ -37,6 +37,8 @@ public class ReportStatusActivity extends AppCompatActivity {
         adapter = new ReportAdapter(this, reportList);
         listViewReports.setAdapter(adapter);
 
+
+
         mAuth = FirebaseAuth.getInstance();
         userEmail = mAuth.getCurrentUser().getEmail();
         database = FirebaseDatabase.getInstance();

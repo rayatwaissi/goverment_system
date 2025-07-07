@@ -186,6 +186,15 @@
     <string name="status_resolved">تم الحل</string>
     <string name="status_rejected">مرفوض</string>
 
+    <string name="title_text">العنوان:</string>
+    <string name="type_text">نوع المشكلة:</string>
+    <string name="Governorate_text">المحافظة:</string>
+    <string name="authority_text">الجهة المختصة:</string>
+    <string name="date_text">التاريخ:</string>
+    <string name="description_text">الوصف:</string>
+    <string name="status_text">الحالة:</string>
+    <string name="statusReason_text">سبب الحالة:</string>
+    <string name="btnBack_show_report">رجوع</string>
     <string name="change_pass_page">تغيير كلمة المرور</string>
     <string name="code_confirm">أدخل الكود</string>
     <string name="submit">إرسال</string>
