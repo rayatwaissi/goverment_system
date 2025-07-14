@@ -191,10 +191,24 @@
     <string name="status_resolved">Resolved</string>
     <string name="status_rejected">Rejected</string>
 
+    <string name="title_text">Title:</string>
+    <string name="type_text">Issue Type:</string>
+    <string name="Governorate_text">Governorate:</string>
+    <string name="authority_text">Authority:</string>
+    <string name="date_text">Date:</string>
+    <string name="description_text">Description:</string>
+    <string name="status_text">Status:</string>
+    <string name="statusReason_text">StatusReason</string>
+
+    <string name="btnBack_show_report">Back</string>
+
+
     <string name="change_pass_page">Change Password</string>
     <string name="code_confirm">Enter Code</string>
     <string name="submit">Submit</string>
 <string name="enter_email">please enter the email correctly</string>
     <string name="enter_code">please enter the code correctly</string>
     <string name="ch_pass">please write password correctly</string>
+
+
 </resources>

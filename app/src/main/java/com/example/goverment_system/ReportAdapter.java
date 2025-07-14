@@ -1,6 +1,7 @@
 package com.example.goverment_system;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import java.util.List;
@@ -24,6 +26,7 @@ import java.util.List;
             this.reportList = reports;
         }
 
+
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -33,6 +36,7 @@ import java.util.List;
                 convertView = LayoutInflater.from(context).inflate(R.layout.item_report, parent, false);
             }
 
+            TextView status_btn = convertView.findViewById(R.id.statusBadge);
             TextView txtTitle = convertView.findViewById(R.id.txtTitle);
             TextView txtMinistry = convertView.findViewById(R.id.txtMinistry);
             TextView txtDate = convertView.findViewById(R.id.txtdate);
@@ -41,31 +45,47 @@ import java.util.List;
             txtMinistry.setText(report.getMinistry());
             txtDate.setText(report.getDate());
 
-            TextView statusBadge = convertView.findViewById(R.id.statusBadge);
             String localizedStatus = getLocalizedStatus(report.getStatus());
-            statusBadge.setText(localizedStatus);
+            status_btn.setText(localizedStatus);
+
+            // فتح صفحة التفاصيل عند الضغط
+            status_btn.setOnClickListener(v -> {
+                if (context instanceof AppCompatActivity) {
+                    AppCompatActivity activity = (AppCompatActivity) context;
+                    // إنشاء الفراجمنت وإرسال reportId إليه
+                    ReportDetailsFragment detailsFragment = ReportDetailsFragment.newInstance(report.getReportId());
+
+                    activity.getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_main, detailsFragment) //  R.id.fragment_main هو مكان عرض الفراجمنتات
+                            .addToBackStack(null)
+                            .commit();
+                }
+            });
+
 
             // تغيّير اللون حسب الحالة
             switch (report.getStatus().toLowerCase()) {
                 case "resolved":
-                    statusBadge.setBackgroundColor(ContextCompat.getColor(context, R.color.status_resolved));
+                    status_btn.setBackgroundColor(ContextCompat.getColor(context, R.color.status_resolved));
                     break;
                 case "rejected":
-                    statusBadge.setBackgroundColor(ContextCompat.getColor(context, R.color.status_rejected));
+                    status_btn.setBackgroundColor(ContextCompat.getColor(context, R.color.status_rejected));
                     break;
                 case "in review":
-                    statusBadge.setBackgroundColor(ContextCompat.getColor(context, R.color.status_in_review));
+                    status_btn.setBackgroundColor(ContextCompat.getColor(context, R.color.status_in_review));
                     break;
                 case "pending":
                 case "new":
-                    statusBadge.setBackgroundColor(ContextCompat.getColor(context, R.color.status_pending));
+                    status_btn.setBackgroundColor(ContextCompat.getColor(context, R.color.status_pending));
                     break;
                 default:
-                    statusBadge.setBackgroundColor(Color.GRAY);
+                    status_btn.setBackgroundColor(Color.GRAY);
             }
 
             return convertView;
-        }
+
+
+    }
 
         // ضعيها خارج getView
         private String getLocalizedStatus(String key) {

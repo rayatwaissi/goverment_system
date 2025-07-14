@@ -1,6 +1,7 @@
 package com.example.goverment_system;
 
 public class Report {
+    private String reportId;
     private String title;
     private String ministry;
     private String date;
@@ -17,6 +18,9 @@ public class Report {
         this.userEmail = userEmail;
     }
 
+    public String getReportId() {
+        return reportId;
+    }
     public String getTitle() {
         return title;
     }

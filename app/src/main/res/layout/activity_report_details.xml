@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        card_view:cardCornerRadius="12dp"
+        card_view:cardElevation="6dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- كل عناصر TextView توضع هنا مثلما كانت -->
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/title_text"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/titleText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/title_text"
+                android:background="@drawable/edit_box"
+                android:padding="8dp"
+                />
+
+            <TextView
+                android:id="@+id/IssueType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/type_text"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/typeText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/type_text"
+                android:background="@drawable/edit_box"
+                android:padding="8dp" />
+
+            <TextView
+                android:id="@+id/Governorate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Governorate_text"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/GovernorateText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/Governorate_text"
+                android:background="@drawable/edit_box"
+                android:padding="8dp" />
+
+            <TextView
+                android:id="@+id/Authority"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/authority_text"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/authorityText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/authority_text"
+                android:background="@drawable/edit_box"
+                android:padding="8dp" />
+
+            <TextView
+                android:id="@+id/Date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/date_text"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/dateText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/date_text"
+                android:background="@drawable/edit_box"
+                android:padding="8dp" />
+
+            <TextView
+                android:id="@+id/Discription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/description_text"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/descriptionText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/edit_box"
+                android:hint="@string/description_text"
+                 android:padding="8dp" />
+
+            <TextView
+                android:id="@+id/Status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/status_text"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/statusText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/status_text"
+                android:padding="8dp"
+                android:background="@drawable/edit_box"
+               />
+
+            <TextView
+                android:id="@+id/StatusReason"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/statusReason_text"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/StatusReasonText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="@string/statusReason_text"
+                android:textColor="#E53935"
+                android:textStyle="bold"
+                android:background="@drawable/edit_box"/>
+
+            <Button
+                android:id="@+id/backBTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="#02394F"
+                android:padding="12dp"
+                android:text="عرض التفاصيل"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</ScrollView>

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -40,10 +41,14 @@ public class StatusFragment extends Fragment {
                     .commit();
         });
 
+
+
         listViewReports = view.findViewById(R.id.listViewReports);
         reports = new ArrayList<>();
         adapter = new ReportAdapter(requireContext(), reports);
         listViewReports.setAdapter(adapter);
+
+
 
         return view;
     }
@@ -78,6 +83,7 @@ public class StatusFragment extends Fragment {
                     }
                 }
                 adapter.notifyDataSetChanged();
+
             }
 
             @Override
