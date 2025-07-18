@@ -16,7 +16,10 @@ public class ReportFirebase {
     public String status;
     public String statusReason;
 
-    public ReportFirebase() {}
+    public ReportFirebase(){
+
+    }
+
 
     // كونستركتور كامل مع status
     public ReportFirebase(String reportId,String governorate, String authority, String issueType, String date,

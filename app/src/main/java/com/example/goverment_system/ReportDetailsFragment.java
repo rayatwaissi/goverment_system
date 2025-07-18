@@ -95,7 +95,6 @@ public class ReportDetailsFragment extends Fragment {
 });
 
       reportId=  getArguments().getString("reportId");
-        Toast.makeText(getContext(), "Report ID: " + reportId, Toast.LENGTH_SHORT).show();
 
         if (reportId != null) {
             DatabaseReference reportRef = FirebaseDatabase.getInstance()

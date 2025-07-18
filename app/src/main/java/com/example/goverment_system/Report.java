@@ -7,7 +7,9 @@ public class Report {
     private String date;
     private String status;
     private String userEmail;
-    public Report() {}
+public Report(){
+
+}
 
     public Report(String reportId,String title, String ministry, String date, String status, String userEmail) {
         this.reportId = reportId;
