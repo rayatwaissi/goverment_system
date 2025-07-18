@@ -1,6 +1,7 @@
 package com.example.goverment_system;
 
 public class ReportFirebase {
+    private   String reportId;
 
     public String governorate;
     public String authority;
@@ -13,13 +14,15 @@ public class ReportFirebase {
     public String imageUrl;
     public String userEmail;
     public String status;
+    public String statusReason;
 
     public ReportFirebase() {}
 
     // كونستركتور كامل مع status
-    public ReportFirebase(String governorate, String authority, String issueType, String date,
+    public ReportFirebase(String reportId,String governorate, String authority, String issueType, String date,
                           String title, String description, double latitude, double longitude,
-                          String imageUrl, String userEmail, String status) {
+                          String imageUrl, String userEmail, String status ,String statusReason) {
+        this.reportId = reportId;
         this.governorate = governorate;
         this.authority = authority;
         this.issueType = issueType;
@@ -31,13 +34,22 @@ public class ReportFirebase {
         this.imageUrl = imageUrl;
         this.userEmail = userEmail;
         this.status = status;
+        this.statusReason = statusReason;
     }
 
     // كونستركتور بدون status يعين قيمة افتراضية "جديد"
-    public ReportFirebase(String governorate, String authority, String issueType, String date,
+    public ReportFirebase(String reportId,String governorate, String authority, String issueType, String date,
                           String title, String description, double latitude, double longitude,
                           String imageUrl, String userEmail) {
-        this(governorate, authority, issueType, date, title, description, latitude, longitude, imageUrl, userEmail, "Pending");
+        this(reportId,governorate, authority, issueType, date, title, description, latitude, longitude, imageUrl, userEmail, "Pending","");
     }
+    public  String getReportId() {
+        return reportId;
+    }
+
+    public void setReportId(String reportId) {
+        this.reportId = reportId;
+    }
+
 
 }

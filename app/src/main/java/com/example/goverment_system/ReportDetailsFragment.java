@@ -1,6 +1,7 @@
 package com.example.goverment_system;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,10 @@ public class ReportDetailsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_report_details, container, false);
 
+
+
+
+
         // ربط الواجهات من ناحية اللغة
         title = view.findViewById(R.id.title);
         titleText = view.findViewById(R.id.titleText);
@@ -53,16 +58,14 @@ public class ReportDetailsFragment extends Fragment {
         descriptionText = view.findViewById(R.id.descriptionText);
         status = view.findViewById(R.id.Status);
         statusText = view.findViewById(R.id.statusText);
-        statusReasonText = view.findViewById(R.id.StatusReason);
-        statusReason = view.findViewById(R.id.StatusReasonText);
+        statusReasonText = view.findViewById(R.id.StatusReasonText);
+        statusReason = view.findViewById(R.id.StatusReason);
         Button backbtn=view.findViewById(R.id.backBTN);
 
 
         // إعداد النصوص الثابتة
         title.setText(R.string.title_text);
         titleText.setHint(R.string.title_text);
-        issueType.setText(R.string.type_text);
-        issueTypeText.setHint(R.string.type_text);
         Governorate.setText(R.string.Governorate_text);
         GovernorateText.setHint(R.string.Governorate_text);
         authority.setText(R.string.authority_text);
@@ -82,10 +85,6 @@ public class ReportDetailsFragment extends Fragment {
         statusReason.setVisibility(View.INVISIBLE);
         statusReasonText.setVisibility(View.INVISIBLE);
 
-        if (statusText.getText().toString().equals("Rejected") || statusText.getText().toString().equals("مرفوض")) {
-            statusReason.setVisibility(View.VISIBLE);
-            statusReasonText.setVisibility(View.VISIBLE);
-        }
 
 // الرجوع الى صفحة عرض الستيتاس
         backbtn.setOnClickListener(v -> {
@@ -94,6 +93,60 @@ public class ReportDetailsFragment extends Fragment {
             .addToBackStack(null)
             .commit();
 });
+
+      reportId=  getArguments().getString("reportId");
+        Toast.makeText(getContext(), "Report ID: " + reportId, Toast.LENGTH_SHORT).show();
+
+        if (reportId != null) {
+            DatabaseReference reportRef = FirebaseDatabase.getInstance()
+                    .getReference("reports")
+                    .child(reportId);
+
+            reportRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+                        ReportFirebase report = snapshot.getValue(ReportFirebase.class);
+                        if (report != null) {
+                            titleText.setText(report.title);
+                            issueType.setText(report.issueType);
+                            GovernorateText.setText(report.governorate);
+                            authorityText.setText(report.authority);
+                            dateText.setText(report.date);
+                            descriptionText.setText(report.description);
+
+                            statusText.setText(report.status);
+                            statusReasonText.setText(report.statusReason);
+
+
+// إظهار سبب الرفض إذا كانت الحالة "مرفوض"
+                            if ("Rejected".equals(report.status) || "مرفوض".equals(report.status)) {
+
+                                statusReasonText.setVisibility(View.VISIBLE);
+                                statusReason.setVisibility(View.VISIBLE);
+
+                            } else {
+                                statusReason.setVisibility(View.GONE);
+                                statusReasonText.setVisibility(View.GONE);
+                            }
+
+
+                        }
+
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                    Toast.makeText(getContext(), "فشل في تحميل البيانات", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+
+
 
         return view;
     }

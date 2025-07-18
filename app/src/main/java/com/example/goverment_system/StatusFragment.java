@@ -71,8 +71,10 @@ public class StatusFragment extends Fragment {
                     ReportFirebase reportFirebase = reportSnapshot.getValue(ReportFirebase.class);
                     if (reportFirebase != null && reportFirebase.userEmail != null &&
                             reportFirebase.userEmail.trim().equals(userEmail.trim())) {
+                        String reportId = reportSnapshot.getKey();  // هذا هو الصح
 
                         Report report = new Report(
+                                reportId,
                                 reportFirebase.title,
                                 reportFirebase.authority,
                                 reportFirebase.date,

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
@@ -32,10 +33,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="@string/title_text"
                 android:background="@drawable/edit_box"
-                android:padding="8dp"
-                />
+                android:hint="@string/title_text"
+                android:padding="8dp" />
 
             <TextView
                 android:id="@+id/IssueType"
@@ -50,8 +50,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="@string/type_text"
                 android:background="@drawable/edit_box"
+                android:hint="@string/type_text"
                 android:padding="8dp" />
 
             <TextView
@@ -67,8 +67,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="@string/Governorate_text"
                 android:background="@drawable/edit_box"
+                android:hint="@string/Governorate_text"
                 android:padding="8dp" />
 
             <TextView
@@ -84,8 +84,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="@string/authority_text"
                 android:background="@drawable/edit_box"
+                android:hint="@string/authority_text"
                 android:padding="8dp" />
 
             <TextView
@@ -101,8 +101,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="@string/date_text"
                 android:background="@drawable/edit_box"
+                android:hint="@string/date_text"
                 android:padding="8dp" />
 
             <TextView
@@ -120,7 +120,7 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/edit_box"
                 android:hint="@string/description_text"
-                 android:padding="8dp" />
+                android:padding="8dp" />
 
             <TextView
                 android:id="@+id/Status"
@@ -135,10 +135,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="@string/status_text"
-                android:padding="8dp"
                 android:background="@drawable/edit_box"
-               />
+                android:hint="@string/status_text"
+                android:padding="8dp" />
 
             <TextView
                 android:id="@+id/StatusReason"
@@ -152,11 +151,11 @@
                 android:id="@+id/StatusReasonText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/edit_box"
                 android:padding="8dp"
                 android:text="@string/statusReason_text"
                 android:textColor="#E53935"
-                android:textStyle="bold"
-                android:background="@drawable/edit_box"/>
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/backBTN"
@@ -170,7 +169,6 @@
                 android:text="عرض التفاصيل"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold" />
-
 
 
         </LinearLayout>

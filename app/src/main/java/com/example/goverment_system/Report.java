@@ -1,26 +1,32 @@
 package com.example.goverment_system;
 
 public class Report {
-    private String reportId;
+    private  String reportId;
     private String title;
     private String ministry;
     private String date;
     private String status;
     private String userEmail;
-
     public Report() {}
 
-    public Report(String title, String ministry, String date, String status, String userEmail) {
+    public Report(String reportId,String title, String ministry, String date, String status, String userEmail) {
+        this.reportId = reportId;
         this.title = title;
         this.ministry = ministry;
         this.date = date;
         this.status = status;
         this.userEmail = userEmail;
+
+
     }
 
     public String getReportId() {
         return reportId;
     }
+    public void setReportId(String reportId) {
+        this.reportId = reportId;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -44,4 +50,5 @@ public class Report {
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
     }
+
 }

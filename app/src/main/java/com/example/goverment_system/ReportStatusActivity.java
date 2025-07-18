@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.*;
+import com.google.firebase.database.core.Repo;
 
 import java.util.ArrayList;
 
@@ -53,12 +54,17 @@ public class ReportStatusActivity extends AppCompatActivity {
                     ReportFirebase reportFirebase = reportSnapshot.getValue(ReportFirebase.class);
                     if (reportFirebase != null && reportFirebase.userEmail.trim().equals(userEmail.trim())) {
                         // نعمل نسخة مصغرة من التقرير تحتوي فقط على البيانات اللي بدنا نعرضها
+
+                        String reportId = snapshot.getKey();  // هذا بجيب الـ ID تبع البلاغ من Firebase
+
                         Report report = new Report(
+                                reportId,
                                 reportFirebase.title,
                                 reportFirebase.authority,
                                 reportFirebase.date,
                                 reportFirebase.status,
                                 reportFirebase.userEmail
+
                         );
                         reportList.add(report);
                     }

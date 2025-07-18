@@ -312,7 +312,13 @@ simple_spinner_item`          | عرض العنصر المُختار حاليً�
                 String userEmail = currentUser != null ? currentUser.getEmail() : "unknown_user";
 
 
+
+
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("reports");
+                String reportId = databaseReference.push().getKey();
+
                 ReportFirebase report = new ReportFirebase(
+                        reportId,
                         governorateStr,
                         authorityStr,
                         issueTypeStr,
@@ -325,11 +331,8 @@ simple_spinner_item`          | عرض العنصر المُختار حاليً�
                         userEmail
 
                 );
-
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("reports");
-                String reportId = databaseReference.push().getKey();
-
                 if (reportId != null) {
+                    report.setReportId(reportId);
                     databaseReference.child(reportId).setValue(report).addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             Toast.makeText(getContext(), getString(R.string.msg_report_success), Toast.LENGTH_LONG).show();

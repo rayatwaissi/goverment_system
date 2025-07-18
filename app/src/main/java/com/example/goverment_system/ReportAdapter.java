@@ -53,7 +53,8 @@ import java.util.List;
                 if (context instanceof AppCompatActivity) {
                     AppCompatActivity activity = (AppCompatActivity) context;
                     // إنشاء الفراجمنت وإرسال reportId إليه
-                    ReportDetailsFragment detailsFragment = ReportDetailsFragment.newInstance(report.getReportId());
+                    String reportId = report.getReportId(); // من object حقيقي
+                    ReportDetailsFragment detailsFragment = ReportDetailsFragment.newInstance(reportId);
 
                     activity.getSupportFragmentManager().beginTransaction()
                             .replace(R.id.fragment_main, detailsFragment) //  R.id.fragment_main هو مكان عرض الفراجمنتات
