@@ -45,7 +45,6 @@ public class ReportStatusActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         reportsRef = database.getReference("reports");
 
-        // قراءة البيانات من Firebase
         reportsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -53,9 +52,8 @@ public class ReportStatusActivity extends AppCompatActivity {
                 for (DataSnapshot reportSnapshot : snapshot.getChildren()) {
                     ReportFirebase reportFirebase = reportSnapshot.getValue(ReportFirebase.class);
                     if (reportFirebase != null && reportFirebase.userEmail.trim().equals(userEmail.trim())) {
-                        // نعمل نسخة مصغرة من التقرير تحتوي فقط على البيانات اللي بدنا نعرضها
 
-                        String reportId = snapshot.getKey();  // هذا بجيب الـ ID تبع البلاغ من Firebase
+                        String reportId = snapshot.getKey();
 
                         Report report = new Report(
                                 reportId,
@@ -70,7 +68,7 @@ public class ReportStatusActivity extends AppCompatActivity {
                     }
 
                 }
-                adapter.notifyDataSetChanged(); // تحديث العرض
+                adapter.notifyDataSetChanged();
                 Toast.makeText(ReportStatusActivity.this, "Loaded " + reportList.size() + " reports", Toast.LENGTH_SHORT).show();
             }
 

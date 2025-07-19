@@ -6,7 +6,6 @@ public class User {
     public String phone;
 
     public User() {
-        // Required for Firebase
     }
 
     public User(String name, String email, String phone) {
@@ -15,4 +14,3 @@ public class User {
         this.phone = phone;
     }
 }
-// Report.java

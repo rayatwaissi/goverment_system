@@ -21,7 +21,6 @@ public class ReportFirebase {
     }
 
 
-    // كونستركتور كامل مع status
     public ReportFirebase(String reportId,String governorate, String authority, String issueType, String date,
                           String title, String description, double latitude, double longitude,
                           String imageUrl, String userEmail, String status ,String statusReason) {
@@ -40,7 +39,6 @@ public class ReportFirebase {
         this.statusReason = statusReason;
     }
 
-    // كونستركتور بدون status يعين قيمة افتراضية "جديد"
     public ReportFirebase(String reportId,String governorate, String authority, String issueType, String date,
                           String title, String description, double latitude, double longitude,
                           String imageUrl, String userEmail) {

@@ -18,7 +18,7 @@ public class MainFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // تحميل اللغة أولاً
+
 
 
         View view = inflater.inflate(R.layout.activity_main, container, false);
@@ -28,17 +28,17 @@ public class MainFragment extends Fragment {
         TextView welcomeText = view.findViewById(R.id.wlcm);
         Button btnLanguage = view.findViewById(R.id.btnLanguage);
 
-        // ضبط نص زر اللغة حسب اللغة الحالية
+
         btnLanguage.setText(getCurrentLang().equals("ar") ? "English" : "العربية");
 
-        // عند الضغط، يتم تغيير اللغة وحفظها
+
         btnLanguage.setOnClickListener(v -> {
             String currentLang = getCurrentLang();
             String newLang = currentLang.equals("ar") ? "en" : "ar";
             setLocale(newLang);
         });
 
-        // ضبط النصوص حسب اللغة
+
         login.setText(R.string.login);
         signup.setText(R.string.sign_up);
         welcomeText.setText(R.string.welcome);
@@ -68,12 +68,10 @@ public class MainFragment extends Fragment {
 
         getActivity().getResources().updateConfiguration(config, getActivity().getResources().getDisplayMetrics());
 
-        // حفظ اللغة
         SharedPreferences.Editor editor = getActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE).edit();
         editor.putString("My_Lang", lang);
         editor.apply();
 
-        // إعادة تشغيل النشاط لتطبيق اللغة
         getActivity().recreate();
     }
 

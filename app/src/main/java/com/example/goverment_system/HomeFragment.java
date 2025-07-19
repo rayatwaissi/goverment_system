@@ -15,13 +15,13 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home, container, false);
 
-        // ربط العناصر
+
         TextView titleTV = view.findViewById(R.id.home);
         Button repBtn = view.findViewById(R.id.RIssue);
         Button VRSBtn = view.findViewById(R.id.VRS);
 
 
-        // تعيين النصوص من ملفات الموارد حسب لغة الجهاز
+
         titleTV.setText(R.string.home);
         repBtn.setText(R.string.report_issue);
         VRSBtn.setText(R.string.view_reports_status);

@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -34,7 +35,6 @@ public class SignupFragment extends Fragment {
         Button registerBtn = view.findViewById(R.id.signup_btn);
         TextView tvlogin = view.findViewById(R.id.tvlogin);
 
-        // تعيين النصوص حسب لغة الجهاز
         titleTV.setText(R.string.signup_title);
         nameET.setHint(R.string.full_name_hint);
         emailET.setHint(R.string.email_hint);
@@ -74,23 +74,36 @@ public class SignupFragment extends Fragment {
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
+
+                            FirebaseUser user = mAuth.getCurrentUser();
+
+                            if (user != null) {
+                                user.sendEmailVerification()
+                                        .addOnCompleteListener(verifyTask -> {
+                                            if (verifyTask.isSuccessful()) {
+                                                Toast.makeText(getContext(), "A verification link has been sent to your email. Please verify it before logging in.", Toast.LENGTH_LONG).show();
+                                            } else {
+                                                Toast.makeText(getContext(), "Failed to send the verification link.", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                            }
+
+
                             String userId = mAuth.getCurrentUser().getUid();
 
-                            // أنشئ مرجع لقاعدة البيانات
                             DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Users");
 
-                            // خزّن البيانات كمجموعة بيانات بسيطة
-                            User user = new User(name, email, phone);
-                            dbRef.child(userId).setValue(user)
+                            User newUser  = new User(name, email, phone);
+                            dbRef.child(userId).setValue(newUser)
                                     .addOnSuccessListener(aVoid -> {
-                                        Toast.makeText(getContext(),getString(R.string.registration_success), Toast.LENGTH_SHORT).show();
-                                     //انتقل لصفحة home
+                                        Toast.makeText(getContext(), "Account created. Please verify your email before logging in.", Toast.LENGTH_LONG).show();
+
                                       requireActivity().getSupportFragmentManager().beginTransaction()
-                                              .replace(R.id.fragment_main,new HomeFragment())
+                                              .replace(R.id.fragment_main,new LoginFragment())
                                               .addToBackStack(null).commit();
                                     })
                                     .addOnFailureListener(e -> {
-                                        String message = getString(R.string.data_failed, e.getMessage());
+                                        String message = "Data saving failed: " + e.getMessage();
                                         Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
                                     });
 

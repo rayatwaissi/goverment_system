@@ -49,7 +49,7 @@ public class ReportFragment extends Fragment {
 
         mapView = view.findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
-        mapView.onResume(); // مهم لتشتغل الخريطة
+        mapView.onResume();
 
         MapsInitializer.initialize(requireContext());
 
@@ -58,17 +58,15 @@ public class ReportFragment extends Fragment {
             public void onMapReady(GoogleMap gMap) {
                 googleMap = gMap;
 
-                // حرك الكاميرا لموقع مبدأي (مثلاً عمان)
                 LatLng jordan = new LatLng(31.9539, 35.9106);
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(jordan, 12));
 
-                // عند الضغط على الخريطة
                 googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                     @Override
                     public void onMapClick(LatLng latLng) {
-                        googleMap.clear(); // احذف الماركر القديم
+                        googleMap.clear();
                         googleMap.addMarker(new MarkerOptions().position(latLng).title("موقع البلاغ"));
-                        selectedLocation = latLng; // خزّن الإحداثيات
+                        selectedLocation = latLng;
                     }
                 });
             }
@@ -87,28 +85,18 @@ public class ReportFragment extends Fragment {
                         .commit();
             }
         });
-//-------------------------------------------------------------------------------------------------------------
 
-/*
-
-simple_spinner_item`          | عرض العنصر المُختار حاليًا
-`simple_spinner_dropdown_item` | عرض العناصر عند فتح القائمة
-
-*/
         Spinner spinnerGovernorates =view.findViewById(R.id.spinner_governorates);
-    /*    ينشئ Adapter (المسؤول عن ربط البيانات مع العناصر المعروضة).
- يستخدم مصفوفة القيم الموجودة في strings.xml باسم governorates_array.
- يستخدم الشكل الجاهز simple_spinner_item لعرض كل عنصر داخل الـ Spinner.
-*/
+
 
         ArrayAdapter<CharSequence> adapter= ArrayAdapter.createFromResource(requireContext(),
                 R.array.governorates_array,
                 android.R.layout.simple_spinner_item);
-        //يحدد الشكل (Layout) الذي يستخدمه عندما تُفتح القائمة المنسدلة وتعرض العناصر
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // يربط Adapter بالـ Spinner ليتم عرض القائمة بداخله
+
         spinnerGovernorates.setAdapter(adapter);
-        // Spinner ComptentAuthority =view.findViewById(R.id.spAuthority);
+
 
 
         Spinner spinner_authority=view.findViewById(R.id.spAuthority);
@@ -123,7 +111,7 @@ simple_spinner_item`          | عرض العنصر المُختار حاليً�
         spinner_authority.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                int arrayResId = -1; // الافتراضي: لا شيء
+                int arrayResId = -1;
 
                 switch (position) {
                     case 1: // Ministry of Education
@@ -161,19 +149,16 @@ simple_spinner_item`          | عرض العنصر المُختار حاليً�
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     issue_type.setAdapter(adapter);
                 } else {
-                    issue_type.setAdapter(null); // أو يمكنك إخفاء السبينر
+                    issue_type.setAdapter(null);
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                // يمكن تركه فارغًا
             }
         });
 
 
-
-//-----------------------------------------------------------------------------------------------------------------------------
 
         EditText editTextDate = view.findViewById(R.id.editTextDate);
         editTextDate.setHint(R.string.select_date_hint);
@@ -188,19 +173,16 @@ simple_spinner_item`          | عرض العنصر المُختار حاليً�
                         String selectedDate = dayOfMonth + "-" + (month1 + 1) + "-" + year1;
                         editTextDate.setText(selectedDate);
                     }, year, month, day);
-            //نعرض نافذة اختيار التاريخ للمستخدم.
+
             datePickerDialog.show();
         });
-//-----------------------------------------------------------------------------------------------------------------------------
 
 
         imageButton = view.findViewById(R.id.camera);
 
         imageButton.setOnClickListener(v -> {
-            // هل تطبيقك يملك إذن استخدام الكاميرا؟،   إذا لم يكن لديه الإذن → ننتقل للسطر التالي
 
-            //طلب من المستخدم السماح باستخدام الكاميرا (تظهر له نافذة نظام تسأله).
-            //PERMISSION_CODE هو رقم (مثلاً 100) نستخدمه لاحقًا لنعرف ما هو الطلب
+
             if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{Manifest.permission.CAMERA}, PERMISSION_CODE);
             } else {
@@ -209,7 +191,7 @@ simple_spinner_item`          | عرض العنصر المُختار حاليً�
         });
 
 
-//--------------------------------------------------------------------------------------
+
         TextView titleRep=view.findViewById(R.id.Report);
        titleRep.setText(R.string.report_issue_title);
 
@@ -233,7 +215,6 @@ simple_spinner_item`          | عرض العنصر المُختار حاليً�
         LocationLabel.setText(R.string.location_label);
 
 
-//--------------------------------------------------------------------------------------------------------------------------
     Button submitBtn=view.findViewById(R.id.submit_report);
 
        submitBtn.setText(R.string.submit_button);
@@ -244,7 +225,6 @@ simple_spinner_item`          | عرض العنصر المُختار حاليً�
                 int selectedauthority = spinner_authority.getSelectedItemPosition();
                 int selected_issue_type = issue_type.getSelectedItemPosition();
 
-                // EditText EditDATE=view.findViewById(R.id.editTextDate);
                 String date=editTextDate.getText().toString().trim();
 
 
@@ -285,9 +265,6 @@ simple_spinner_item`          | عرض العنصر المُختار حاليً�
                 }
 
 
-// داخل onClick زر الإرسال بعد التحقق من صحة البيانات:
-
-// 1. جلب البيانات من الفورم:
                 String governorateStr = spinnerGovernorates.getSelectedItem().toString();
                 String authorityStr = spinner_authority.getSelectedItem().toString();
                 String issueTypeStr = issue_type.getSelectedItem().toString();
@@ -304,9 +281,7 @@ simple_spinner_item`          | عرض العنصر المُختار حاليً�
                     return;
                 }
 
-// 2. إذا عندك صورة، لازم ترفعيها أولاً على Firebase Storage لتحصلي على رابط، لكن لو بدون صورة، يمكن تترك imageUrl فارغ أو null
-                String imageUrl = null; // هنا خليها null أو رابط الصورة بعد رفعها (سنشرح لاحقاًد
-// 3. إنشاء كائن البلاغ:
+                String imageUrl = null;
 
                 FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
                 String userEmail = currentUser != null ? currentUser.getEmail() : "unknown_user";
@@ -336,7 +311,7 @@ simple_spinner_item`          | عرض العنصر المُختار حاليً�
                     databaseReference.child(reportId).setValue(report).addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             Toast.makeText(getContext(), getString(R.string.msg_report_success), Toast.LENGTH_LONG).show();
-                            // هنا ممكن تمسح الحقول أو تنقل المستخدم لشاشة أخرى
+
                         } else {
                             Toast.makeText(getContext(), getString(R.string.msg_report_failed)+ task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
@@ -352,18 +327,12 @@ simple_spinner_item`          | عرض العنصر المُختار حاليً�
     }
 
 
-    /*
-    openCamera() تُستخدم لفتح تطبيق الكاميرا.
-    Intent يخبر النظام بأننا نريد التقاط صورة بالكاميرا.
-    startActivityForResult() يعني: "افتح الكاميرا وارجع لي النتيجة لاحقًا".
-     CAMERA_REQUEST هو رقم تعريف للطلب (مثل 101).*/
     private void openCamera() {
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(cameraIntent,CAMERA_REQUEST);
     }
 
     @Override
-    //إذا وافق يفتح الكاميرا→ onRequestPermissionsResult .
     public void onRequestPermissionsResult(int code, String[] perms, int[] results) {
         if (code == PERMISSION_CODE && results.length > 0 && results[0] == PackageManager.PERMISSION_GRANTED) {
             openCamera();
@@ -371,7 +340,6 @@ simple_spinner_item`          | عرض العنصر المُختار حاليً�
     }
 
     @Override
-    //اذا التقط صورة بالكاميرا  يستقبل الصورة ويعرضها → onActivityResult.
 
 
 
