@@ -48,23 +48,21 @@ import java.util.List;
             String localizedStatus = getLocalizedStatus(report.getStatus());
             status_btn.setText(localizedStatus);
 
-            // فتح صفحة التفاصيل عند الضغط
             status_btn.setOnClickListener(v -> {
                 if (context instanceof AppCompatActivity) {
                     AppCompatActivity activity = (AppCompatActivity) context;
-                    // إنشاء الفراجمنت وإرسال reportId إليه
-                    String reportId = report.getReportId(); // من object حقيقي
+
+                    String reportId = report.getReportId();
                     ReportDetailsFragment detailsFragment = ReportDetailsFragment.newInstance(reportId);
 
                     activity.getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.fragment_main, detailsFragment) //  R.id.fragment_main هو مكان عرض الفراجمنتات
+                            .replace(R.id.fragment_main, detailsFragment)
                             .addToBackStack(null)
                             .commit();
                 }
             });
 
 
-            // تغيّير اللون حسب الحالة
             switch (report.getStatus().toLowerCase()) {
                 case "resolved":
                     status_btn.setBackgroundColor(ContextCompat.getColor(context, R.color.status_resolved));
@@ -88,7 +86,6 @@ import java.util.List;
 
     }
 
-        // ضعيها خارج getView
         private String getLocalizedStatus(String key) {
             switch (key.toLowerCase()) {
                 case "pending":

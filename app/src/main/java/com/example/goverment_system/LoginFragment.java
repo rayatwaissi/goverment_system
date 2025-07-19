@@ -12,10 +12,13 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginFragment extends Fragment {
 
     private FirebaseAuth mAuth;
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mAuth = FirebaseAuth.getInstance();
         View view = inflater.inflate(R.layout.login, container, false);
@@ -37,46 +40,51 @@ public class LoginFragment extends Fragment {
             String password = passwordET.getText().toString().trim();
 
             if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(getContext(),  getString(R.string.enter_email_password), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getString(R.string.enter_email_password), Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            mAuth.signInWithEmailAndPassword(email, password)
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            Toast.makeText(getContext(),getString(R.string.login_success), Toast.LENGTH_SHORT).show();
-                            // انتقال إلى الصفحة الرئيسية
-
-                            requireActivity().getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.fragment_main, new HomeFragment())
-                                    .addToBackStack(null)
-                                    .commit();
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            if (user != null && user.isEmailVerified()) {
+                                Toast.makeText(getContext(), getString(R.string.login_success), Toast.LENGTH_SHORT).show();
+                                requireActivity().getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.fragment_main, new HomeFragment())
+                                        .addToBackStack(null)
+                                        .commit();
+                            } else {
+                                Toast.makeText(getContext(), getString(R.string.verify_email_first), Toast.LENGTH_LONG).show();
+                                FirebaseAuth.getInstance().signOut();
+                            }
                         } else {
-                            Toast.makeText(getContext(), getString(R.string.login_failed) , Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), getString(R.string.login_failed) + ": " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
         });
+
         TextView tvsignup = view.findViewById(R.id.tvSignUp);
         tvsignup.setOnClickListener(v -> goTSignUp());
 
-        TextView forgot=view.findViewById(R.id.forgot_pass);
+        TextView forgot = view.findViewById(R.id.forgot_pass);
         forgot.setText(R.string.forgot_password);
-     forgot.setOnClickListener(v -> goTchpass());
+        forgot.setOnClickListener(v -> goTchpass());
+
         return view;
-
-
-
     }
-     private void goTSignUp() {
+
+    private void goTSignUp() {
         requireActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_main, new MainFragment())
                 .addToBackStack(null)
                 .commit();
     }
+
     private void goTchpass() {
         requireActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_main, new Change_passFragment())
                 .addToBackStack(null)
                 .commit();
     }
-    }
+}

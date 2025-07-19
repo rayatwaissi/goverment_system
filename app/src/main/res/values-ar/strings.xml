@@ -201,4 +201,9 @@
     <string name="enter_email">الرجاء إدخال ايميل صحيح</string>
     <string name="enter_code">الرجاء إدخال الكود بشكل صحيح</string>
     <string name="ch_pass">الرجاء كتابة كلمة مرور بالشكل الصحيح</string>
+    <string name="verify_email_first">الرجاء تاكيد الايميل قبل تسجيل الدخول.</string>
+    <string name="reset_email_sent">تم إرسال رابط إعادة التعيين إلى بريدك الإلكتروني</string>
+    <string name="reset_email_failed">فشل في الإرسال، تأكد من صحة البريد</string>
+    <string name="data_load_failed">فشل في تحميل البيانات</string>
+
 </resources>

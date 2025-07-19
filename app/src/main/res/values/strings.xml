@@ -211,4 +211,10 @@
     <string name="ch_pass">please write password correctly</string>
 
 
+    <string name="verify_email_first">Please verify your email before logging in.</string>
+        <string name="reset_email_sent">A reset link has been sent to your email</string>
+        <string name="reset_email_failed">Failed to send reset link. Check your email</string>
+
+    <string name="data_load_failed">Failed to load data</string>
+
 </resources>

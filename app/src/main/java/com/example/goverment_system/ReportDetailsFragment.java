@@ -42,7 +42,6 @@ public class ReportDetailsFragment extends Fragment {
 
 
 
-        // ربط الواجهات من ناحية اللغة
         title = view.findViewById(R.id.title);
         titleText = view.findViewById(R.id.titleText);
         issueType = view.findViewById(R.id.typeText);
@@ -63,7 +62,6 @@ public class ReportDetailsFragment extends Fragment {
         Button backbtn=view.findViewById(R.id.backBTN);
 
 
-        // إعداد النصوص الثابتة
         title.setText(R.string.title_text);
         titleText.setHint(R.string.title_text);
         Governorate.setText(R.string.Governorate_text);
@@ -81,12 +79,10 @@ public class ReportDetailsFragment extends Fragment {
         statusReasonText.setHint(R.string.statusReason_text);
         backbtn.setText(R.string.btnBack_show_report);
 
-        // عمل سبب الحالة غير ظاهرة الا في حالة الرفض
         statusReason.setVisibility(View.INVISIBLE);
         statusReasonText.setVisibility(View.INVISIBLE);
 
 
-// الرجوع الى صفحة عرض الستيتاس
         backbtn.setOnClickListener(v -> {
     requireActivity().getSupportFragmentManager().beginTransaction()
             .replace(R.id.fragment_main, new StatusFragment())
@@ -118,7 +114,6 @@ public class ReportDetailsFragment extends Fragment {
                             statusReasonText.setText(report.statusReason);
 
 
-// إظهار سبب الرفض إذا كانت الحالة "مرفوض"
                             if ("Rejected".equals(report.status) || "مرفوض".equals(report.status)) {
 
                                 statusReasonText.setVisibility(View.VISIBLE);
@@ -139,7 +134,7 @@ public class ReportDetailsFragment extends Fragment {
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
 
-                    Toast.makeText(getContext(), "فشل في تحميل البيانات", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.data_load_failed), Toast.LENGTH_SHORT).show();
                 }
             });
         }

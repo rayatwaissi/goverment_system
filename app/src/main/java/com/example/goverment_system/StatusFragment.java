@@ -71,7 +71,7 @@ public class StatusFragment extends Fragment {
                     ReportFirebase reportFirebase = reportSnapshot.getValue(ReportFirebase.class);
                     if (reportFirebase != null && reportFirebase.userEmail != null &&
                             reportFirebase.userEmail.trim().equals(userEmail.trim())) {
-                        String reportId = reportSnapshot.getKey();  // هذا هو الصح
+                        String reportId = reportSnapshot.getKey();
 
                         Report report = new Report(
                                 reportId,
@@ -90,7 +90,6 @@ public class StatusFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                // هنا ممكن تعرضي رسالة خطأ للمستخدم اذا حبيت
             }
         });
     }
