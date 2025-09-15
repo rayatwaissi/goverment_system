@@ -17,6 +17,11 @@ import com.google.firebase.database.*;
 
 public class ReportDetailsFragment extends Fragment {
 
+
+
+
+
+
     private TextView titleText, issueTypeText, GovernorateText, authorityText, dateText, descriptionText, statusText, statusReasonText;
     private TextView title, issueType, Governorate, authority, date, description, status, statusReason;
 
